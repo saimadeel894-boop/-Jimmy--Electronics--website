@@ -1,0 +1,26 @@
+[
+  {
+    "id": "faq-001",
+    "question": "What is the warranty on JIMMY products?",
+    "answer": "All JIMMY products come with a 2-year manufacturer warranty covering defects in materials and workmanship.",
+    "category": "Warranty"
+  },
+  {
+    "id": "faq-002",
+    "question": "How long does delivery take?",
+    "answer": "We offer free DHL Express delivery on orders over R1,500. Standard delivery takes 3-5 business days.",
+    "category": "Shipping"
+  },
+  {
+    "id": "faq-003",
+    "question": "Can I return a product?",
+    "answer": "Yes, we offer a 30-day return policy. Products must be in original condition with all packaging.",
+    "category": "Returns"
+  },
+  {
+    "id": "faq-004",
+    "question": "Where can I buy replacement parts?",
+    "answer": "Replacement parts and accessories are available in our Parts & Accessories section.",
+    "category": "Products"
+  }
+]

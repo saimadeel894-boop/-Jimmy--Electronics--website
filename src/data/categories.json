@@ -1,0 +1,50 @@
+[
+  {
+    "id": "vacuum-cleaners",
+    "name": "Vacuum Cleaners",
+    "slug": "vacuum-cleaners",
+    "description": "Powerful cordless and handheld vacuums",
+    "image": "/placeholder.svg",
+    "productCount": 8
+  },
+  {
+    "id": "kitchen",
+    "name": "Kitchen Appliances",
+    "slug": "kitchen",
+    "description": "Blenders, mixers, and kitchen essentials",
+    "image": "/placeholder.svg",
+    "productCount": 5
+  },
+  {
+    "id": "hair-care",
+    "name": "Hair Care",
+    "slug": "hair-care",
+    "description": "Professional hair dryers and styling tools",
+    "image": "/placeholder.svg",
+    "productCount": 4
+  },
+  {
+    "id": "water-purifiers",
+    "name": "Water Purifiers",
+    "slug": "water-purifiers",
+    "description": "Clean water solutions for your home",
+    "image": "/placeholder.svg",
+    "productCount": 3
+  },
+  {
+    "id": "parts-accessories",
+    "name": "Parts & Accessories",
+    "slug": "parts-accessories",
+    "description": "Replacement parts and add-ons",
+    "image": "/placeholder.svg",
+    "productCount": 12
+  },
+  {
+    "id": "deals",
+    "name": "Deals & Bundles",
+    "slug": "deals",
+    "description": "Special offers and value bundles",
+    "image": "/placeholder.svg",
+    "productCount": 6
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "jm-vc-001",
+    "name": "JIMMY JV85 Pro Cordless Vacuum",
+    "slug": "jimmy-jv85-pro",
+    "category": "vacuum-cleaners",
+    "price": 8999,
+    "salePrice": 6999,
+    "currency": "ZAR",
+    "images": ["/placeholder.svg"],
+    "description": "Powerful cordless vacuum with 200AW suction power and intelligent dust sensor.",
+    "specs": {
+      "suction": "200AW",
+      "battery": "70 min runtime",
+      "weight": "1.5 kg",
+      "dustbin": "0.6L"
+    },
+    "badges": ["Sale", "Best Seller"],
+    "inStock": true,
+    "rating": 4.8,
+    "reviewCount": 124
+  },
+  {
+    "id": "jm-vc-002",
+    "name": "JIMMY H9 Flex Handheld Vacuum",
+    "slug": "jimmy-h9-flex",
+    "category": "vacuum-cleaners",
+    "price": 5999,
+    "salePrice": null,
+    "currency": "ZAR",
+    "images": ["/placeholder.svg"],
+    "description": "Lightweight and flexible handheld vacuum for quick clean-ups.",
+    "specs": {
+      "suction": "160AW",
+      "battery": "50 min runtime",
+      "weight": "1.2 kg",
+      "dustbin": "0.5L"
+    },
+    "badges": ["New"],
+    "inStock": true,
+    "rating": 4.6,
+    "reviewCount": 89
+  },
+  {
+    "id": "jm-kt-001",
+    "name": "JIMMY Kitchen Pro Blender",
+    "slug": "jimmy-kitchen-pro-blender",
+    "category": "kitchen",
+    "price": 3499,
+    "salePrice": 2799,
+    "currency": "ZAR",
+    "images": ["/placeholder.svg"],
+    "description": "High-performance blender with 1200W motor and 6-blade system.",
+    "specs": {
+      "power": "1200W",
+      "capacity": "1.5L",
+      "blades": "6-blade stainless steel",
+      "speeds": "10 speed settings"
+    },
+    "badges": ["Sale"],
+    "inStock": true,
+    "rating": 4.5,
+    "reviewCount": 67
+  },
+  {
+    "id": "jm-hc-001",
+    "name": "JIMMY Hair Dryer F6 Pro",
+    "slug": "jimmy-hair-dryer-f6-pro",
+    "category": "hair-care",
+    "price": 4299,
+    "salePrice": null,
+    "currency": "ZAR",
+    "images": ["/placeholder.svg"],
+    "description": "Professional hair dryer with negative ion technology for smooth, frizz-free results.",
+    "specs": {
+      "power": "1800W",
+      "ionTechnology": "Negative ion",
+      "heatSettings": "3 temperature / 2 speed",
+      "weight": "450g"
+    },
+    "badges": ["New"],
+    "inStock": true,
+    "rating": 4.7,
+    "reviewCount": 43
+  }
+]
