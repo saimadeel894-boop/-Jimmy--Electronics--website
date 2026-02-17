@@ -1,0 +1,32 @@
+[
+  {
+    "id": "rev-001",
+    "productId": "jm-vc-001",
+    "author": "Sarah M.",
+    "rating": 5,
+    "title": "Best vacuum I've ever owned",
+    "content": "The suction power is incredible and it's so lightweight. Makes cleaning a breeze!",
+    "date": "2025-12-15",
+    "verified": true
+  },
+  {
+    "id": "rev-002",
+    "productId": "jm-vc-001",
+    "author": "David K.",
+    "rating": 4,
+    "title": "Great product, fast delivery",
+    "content": "Very happy with the quality. Battery life is excellent. DHL delivery was quick.",
+    "date": "2025-11-28",
+    "verified": true
+  },
+  {
+    "id": "rev-003",
+    "productId": "jm-kt-001",
+    "author": "Lisa T.",
+    "rating": 5,
+    "title": "Perfect for smoothies",
+    "content": "This blender is powerful and quiet. Makes perfect smoothies every morning.",
+    "date": "2026-01-10",
+    "verified": true
+  }
+]

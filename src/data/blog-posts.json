@@ -1,0 +1,24 @@
+[
+  {
+    "id": "blog-001",
+    "title": "5 Tips for Keeping Your Home Dust-Free",
+    "slug": "tips-dust-free-home",
+    "excerpt": "Discover the best strategies for maintaining a clean, dust-free living space with JIMMY appliances.",
+    "content": "",
+    "image": "/placeholder.svg",
+    "author": "JIMMY Africa Team",
+    "date": "2026-01-20",
+    "category": "Cleaning Tips"
+  },
+  {
+    "id": "blog-002",
+    "title": "Why Cordless Vacuums Are the Future",
+    "slug": "cordless-vacuums-future",
+    "excerpt": "Explore the advantages of cordless vacuum technology and how it's changing home cleaning.",
+    "content": "",
+    "image": "/placeholder.svg",
+    "author": "JIMMY Africa Team",
+    "date": "2026-01-15",
+    "category": "Technology"
+  }
+]
