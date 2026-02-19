@@ -1,12 +1,10 @@
-import { Truck } from "lucide-react";
-
 const AnnouncementBar = () => {
   return (
-    <div className="announcement-gradient w-full py-2.5 text-primary-foreground">
-      <div className="container-jimmy flex items-center justify-center gap-2 text-sm font-medium">
-        <Truck className="h-4 w-4 shrink-0" />
-        <span>Free Delivery on Orders Over R1,500 | 30-Day Returns</span>
-      </div>
+    <div className="w-full bg-[hsl(75,60%,88%)] py-2 text-center">
+      <p className="text-sm font-semibold text-primary">
+        International Delivery via DHL Express within 7–20 Business Days.{" "}
+        <span className="font-bold">FREE Shipping on all orders over R2,500</span>
+      </p>
     </div>
   );
 };
