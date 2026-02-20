@@ -25,15 +25,12 @@ const Header = () => {
       <div className="container-jimmy flex h-[72px] items-center gap-4">
 
         {/* Logo */}
-        <Link to="/" className="flex shrink-0 items-center gap-2 mr-4">
-          <div className="flex flex-col leading-none">
-            <span className="text-xl font-extrabold tracking-tight text-primary-foreground">
-              JIMMY
-            </span>
-            <span className="text-[9px] font-semibold uppercase tracking-widest text-primary-foreground/70 leading-tight">
-              Official Africa Exclusive Distributor
-            </span>
-          </div>
+        <Link to="/" className="flex shrink-0 items-center mr-4">
+          <img
+            src="/images/logo-white.png"
+            alt="Jimmy Africa - Official Exclusive Distributor"
+            className="h-10 w-auto"
+          />
         </Link>
 
         {/* Search Bar — center, takes most space */}
