@@ -1,6 +1,6 @@
 import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Truck, RotateCcw, Headphones, ShieldCheck, Play } from "lucide-react";
+import { ArrowRight, Truck, RotateCcw, Headphones, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // ── Product card data (mock) ──────────────────────────────────
@@ -52,12 +52,12 @@ const bestSellers = [
 ];
 
 const categories = [
-  { label: "Bed Vacuum Cleaner", slug: "bed-vacuum", image: "/images/categories/bed-vacuum.png" },
-  { label: "Stick Vacuum Cleaner", slug: "stick-vacuum", image: "/images/categories/stick-vacuum.png" },
-  { label: "Wet & Dry Vacuum Cleaner", slug: "wet-dry-vacuum", image: "/images/categories/wet-dry-vacuum.png" },
-  { label: "Countertop Water Purifier", slug: "water-purifier", image: "/images/categories/water-purifier.png" },
-  { label: "Hair Care / Multi-Styler", slug: "hair-care", image: "/images/categories/hair-care.png" },
-  { label: "Kitchen Appliances", slug: "kitchen", image: "/images/categories/kitchen-appliances.png" },
+  { label: "Bed\nVacuum Cleaner", slug: "bed-vacuum", image: "/images/categories/bed-vacuum.png" },
+  { label: "Stick\nVacuum Cleaner", slug: "stick-vacuum", image: "/images/categories/stick-vacuum.png" },
+  { label: "Wet & Dry\nVacuum Cleaner", slug: "wet-dry-vacuum", image: "/images/categories/wet-dry-vacuum.png" },
+  { label: "Countertop\nWater Purifier", slug: "water-purifier", image: "/images/categories/water-purifier.png" },
+  { label: "Hair Care /\nMulti-Styler", slug: "hair-care", image: "/images/categories/hair-care.png" },
+  { label: "Kitchen\nAppliances", slug: "kitchen", image: "/images/categories/kitchen-appliances.png" },
 ];
 
 const awardImages = [
@@ -80,95 +80,108 @@ const Index = () => {
   return (
     <MainLayout>
 
-      {/* ── Hero — Two-column split matching reference ──────── */}
+      {/* ── Hero — Two-column split matching reference exactly ──────── */}
       <section className="bg-background">
-        <div className="container-jimmy py-4">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-[58fr_42fr]">
+        <div className="container-jimmy py-3">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-[58fr_42fr]">
 
-            {/* Left — Large feature card */}
-            <div className="relative flex min-h-[420px] flex-col justify-end overflow-hidden rounded-lg md:min-h-[500px]">
-              <img
-                src="/images/products/jimmy-pw11-pro-max.jpg"
-                alt="JIMMY PW11 PRO MAX"
+            {/* Left — Olive/Gold feature card with video */}
+            <div
+              className="relative flex min-h-[380px] flex-col justify-end overflow-hidden rounded-md md:min-h-[500px]"
+              style={{ backgroundColor: "hsl(45, 50%, 38%)" }}
+            >
+              {/* Autoplay muted loop video background */}
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-              <div className="relative z-10 p-8 text-primary-foreground">
-                <p className="mb-1 text-sm font-semibold uppercase tracking-widest text-primary-foreground/80">
+                poster="/images/products/jimmy-pw11-pro-max.jpg"
+              >
+                <source src="https://jimmyafrica.com/wp-content/uploads/2026/01/vid-pw11.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-black/20" />
+
+              <div className="relative z-10 p-6 pb-10 text-primary-foreground md:p-10 md:pb-14">
+                <p className="mb-1 text-sm font-medium tracking-wide text-primary-foreground/90">
                   JIMMY PW11 PRO MAX
                 </p>
-                <h1 className="mb-2 text-4xl font-extrabold md:text-5xl">
+                <h1 className="mb-1 text-3xl font-extrabold md:text-[42px] md:leading-tight">
                   From {formatZAR(12890)}
                 </h1>
+                <p className="mb-1 text-sm font-medium text-primary-foreground/90">
+                  5-in-1 Vacuum &amp; Washer
+                </p>
                 <p className="mb-6 text-sm text-primary-foreground/80">
-                  5-in-1 Vacuum &amp; Washer<br />
                   A new definition of smart, full-home cleaning
                 </p>
                 <Button
                   asChild
-                  className="w-fit rounded-sm bg-accent px-6 py-2.5 text-sm font-bold text-accent-foreground hover:bg-accent/90 transition-all hover:shadow-strong"
+                  className="rounded-none bg-primary px-8 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all"
                 >
                   <Link to="/shop">Learn More</Link>
                 </Button>
               </div>
             </div>
 
-            {/* Right — Secondary product card */}
-            <div className="relative flex min-h-[420px] flex-col overflow-hidden rounded-lg bg-jimmy-light-blue md:min-h-[500px]">
-              <div className="relative z-10 p-8 text-center">
-                <p className="mb-1 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+            {/* Right — Light blue card */}
+            <div className="relative flex min-h-[380px] flex-col overflow-hidden rounded-md bg-jimmy-light-blue md:min-h-[500px]">
+              {/* Product image fills background */}
+              <img
+                src="/images/products/jimmy-h8-flex.jpg"
+                alt="JIMMY JV83 PRO"
+                className="absolute inset-0 h-full w-full object-cover object-center"
+              />
+              {/* Text overlay top-center */}
+              <div className="relative z-10 flex flex-col items-center p-6 pt-8 text-center md:p-10 md:pt-10">
+                <p className="mb-0.5 text-sm font-medium tracking-wide text-foreground/80">
                   JIMMY JV83 PRO
                 </p>
-                <h2 className="mb-2 text-3xl font-extrabold text-foreground">
+                <h2 className="mb-1 text-3xl font-extrabold text-foreground md:text-[38px] md:leading-tight">
                   From {formatZAR(4990)}
                 </h2>
-                <p className="mb-6 text-sm text-muted-foreground">
+                <p className="mb-5 text-sm text-muted-foreground">
                   Designed for modern homes, pets,<br />and everyday mess
                 </p>
                 <Button
                   asChild
-                  className="rounded-sm bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all hover:shadow-strong"
+                  className="rounded-none bg-primary px-8 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all"
                 >
                   <Link to="/shop">Shop Now</Link>
                 </Button>
               </div>
-              <img
-                src="/images/products/jimmy-h8-flex.jpg"
-                alt="JIMMY JV83 PRO"
-                className="mt-auto h-56 w-full object-contain object-bottom"
-                loading="lazy"
-              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Award Banner ───────────── */}
-      <section className="bg-jimmy-light-blue py-4">
-        <div className="container-jimmy flex flex-col items-center gap-3">
+      {/* ── Award Banner — single strip ───────────── */}
+      <section className="bg-jimmy-light-blue py-3">
+        <div className="container-jimmy flex flex-col items-center gap-2">
           <img
             src="/images/awards-strip.png"
             alt="Award-winning home technology"
-            className="h-8 w-auto object-contain"
+            className="h-7 w-auto object-contain"
             loading="lazy"
           />
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
             Award-winning home technology delivered across Africa
           </p>
         </div>
       </section>
 
       {/* ── Category Grid ────────────────── */}
-      <section className="section-padding-md bg-jimmy-light-blue">
+      <section className="bg-jimmy-light-blue pb-10 pt-6">
         <div className="container-jimmy">
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             {categories.map((cat) => (
               <Link
                 key={cat.slug}
                 to={`/category/${cat.slug}`}
-                className="group flex flex-col items-center gap-3 rounded-lg bg-background p-5 text-center transition-all hover:shadow-strong hover:-translate-y-1"
+                className="group flex flex-col items-center gap-2 rounded-md bg-background p-4 text-center transition-all hover:shadow-strong hover:-translate-y-1"
               >
-                <div className="flex h-32 w-full items-center justify-center">
+                <div className="flex h-28 w-full items-center justify-center">
                   <img
                     src={cat.image}
                     alt={cat.label}
@@ -176,7 +189,7 @@ const Index = () => {
                     loading="lazy"
                   />
                 </div>
-                <p className="text-xs font-semibold leading-snug text-foreground group-hover:text-primary transition-colors">
+                <p className="whitespace-pre-line text-xs font-bold leading-tight text-foreground group-hover:text-primary transition-colors">
                   {cat.label}
                 </p>
               </Link>
@@ -185,7 +198,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Design Awards Strip with logos ─────────────────── */}
+      {/* ── Design Awards ─────────────────── */}
       <section className="border-t border-b py-8">
         <div className="container-jimmy">
           <div className="mb-6 text-center">
@@ -222,14 +235,13 @@ const Index = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {bestSellers.map((product) => (
               <Link
                 key={product.id}
                 to={`/shop/${product.slug}`}
-                className="group overflow-hidden rounded-lg bg-background shadow-soft transition-all hover:shadow-strong hover:-translate-y-1"
+                className="group overflow-hidden rounded-md bg-background shadow-soft transition-all hover:shadow-strong hover:-translate-y-1"
               >
-                {/* Product image */}
                 <div className="relative aspect-square overflow-hidden bg-secondary">
                   <div className="absolute left-2 top-2 z-10 flex flex-col gap-1">
                     {product.badges.includes("New") && (
@@ -255,8 +267,6 @@ const Index = () => {
                     loading="lazy"
                   />
                 </div>
-
-                {/* Product info */}
                 <div className="p-4">
                   <h3 className="mb-2 text-xs font-semibold leading-snug text-foreground line-clamp-2">
                     {product.name}
@@ -283,29 +293,19 @@ const Index = () => {
 
       {/* ── See JIMMY in Action — Video Section ───────────── */}
       <section className="section-padding-md bg-background">
-        <div className="container-jimmy">
-          <div className="mb-8 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Watch</p>
-            <h2 className="text-foreground">See JIMMY in Action</h2>
-            <p className="mt-1 text-sm text-muted-foreground">Experience the power and innovation of JIMMY products</p>
-          </div>
-          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-lg">
-            <div className="aspect-video bg-jimmy-dark">
-              <img
-                src="/images/products/jimmy-pw11-pro-max.jpg"
-                alt="JIMMY product demo video thumbnail"
-                className="h-full w-full object-cover opacity-70"
-                loading="lazy"
-              />
-            </div>
-            <button
-              className="absolute inset-0 flex items-center justify-center transition-colors group"
-              aria-label="Play video"
+        <div className="container-jimmy text-center">
+          <h2 className="mb-8 text-foreground">See JIMMY in Action</h2>
+          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-md">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full aspect-video object-cover"
+              poster="/images/products/jimmy-pw11-pro-max.jpg"
             >
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-accent shadow-strong transition-transform group-hover:scale-110">
-                <Play className="h-8 w-8 text-accent-foreground ml-1" fill="currentColor" />
-              </div>
-            </button>
+              <source src="https://jimmyafrica.com/wp-content/uploads/2026/01/vid-pw11.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </section>
@@ -313,7 +313,6 @@ const Index = () => {
       {/* ── Happy Customers Review placeholder ────────────── */}
       <section className="section-padding-md bg-secondary">
         <div className="container-jimmy text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Testimonials</p>
           <h2 className="mb-2 text-foreground">Happy Customers Review</h2>
           <p className="text-small">Testimonials coming soon</p>
         </div>
