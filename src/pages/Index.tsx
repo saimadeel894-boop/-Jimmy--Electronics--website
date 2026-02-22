@@ -1,6 +1,6 @@
 import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Truck, RotateCcw, Headphones, ShieldCheck } from "lucide-react";
+import { ArrowRight, Truck, RotateCcw, Headphones, ShieldCheck, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // ── Product card data (mock) ──────────────────────────────────
@@ -85,7 +85,7 @@ const Index = () => {
         <div className="container-jimmy py-4">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-[58fr_42fr]">
 
-            {/* Left — Large feature card with dark lifestyle bg */}
+            {/* Left — Large feature card */}
             <div className="relative flex min-h-[420px] flex-col justify-end overflow-hidden rounded-lg md:min-h-[500px]">
               <img
                 src="/images/products/jimmy-pw11-pro-max.jpg"
@@ -106,14 +106,14 @@ const Index = () => {
                 </p>
                 <Button
                   asChild
-                  className="w-fit rounded-sm bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90"
+                  className="w-fit rounded-sm bg-accent px-6 py-2.5 text-sm font-bold text-accent-foreground hover:bg-accent/90 transition-all hover:shadow-strong"
                 >
                   <Link to="/shop">Learn More</Link>
                 </Button>
               </div>
             </div>
 
-            {/* Right — Secondary product card with lifestyle image */}
+            {/* Right — Secondary product card */}
             <div className="relative flex min-h-[420px] flex-col overflow-hidden rounded-lg bg-jimmy-light-blue md:min-h-[500px]">
               <div className="relative z-10 p-8 text-center">
                 <p className="mb-1 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
@@ -127,7 +127,7 @@ const Index = () => {
                 </p>
                 <Button
                   asChild
-                  className="rounded-sm bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90"
+                  className="rounded-sm bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all hover:shadow-strong"
                 >
                   <Link to="/shop">Shop Now</Link>
                 </Button>
@@ -136,19 +136,21 @@ const Index = () => {
                 src="/images/products/jimmy-h8-flex.jpg"
                 alt="JIMMY JV83 PRO"
                 className="mt-auto h-56 w-full object-contain object-bottom"
+                loading="lazy"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Award Banner with brand strip image ───────────── */}
+      {/* ── Award Banner ───────────── */}
       <section className="bg-jimmy-light-blue py-4">
         <div className="container-jimmy flex flex-col items-center gap-3">
           <img
             src="/images/awards-strip.png"
             alt="Award-winning home technology"
             className="h-8 w-auto object-contain"
+            loading="lazy"
           />
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">
             Award-winning home technology delivered across Africa
@@ -156,7 +158,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Category Grid with real images ────────────────── */}
+      {/* ── Category Grid ────────────────── */}
       <section className="section-padding-md bg-jimmy-light-blue">
         <div className="container-jimmy">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
@@ -164,7 +166,7 @@ const Index = () => {
               <Link
                 key={cat.slug}
                 to={`/category/${cat.slug}`}
-                className="group flex flex-col items-center gap-3 rounded-lg bg-background p-5 text-center transition-shadow hover:shadow-soft"
+                className="group flex flex-col items-center gap-3 rounded-lg bg-background p-5 text-center transition-all hover:shadow-strong hover:-translate-y-1"
               >
                 <div className="flex h-32 w-full items-center justify-center">
                   <img
@@ -174,7 +176,7 @@ const Index = () => {
                     loading="lazy"
                   />
                 </div>
-                <p className="text-xs font-semibold leading-snug text-foreground group-hover:text-primary">
+                <p className="text-xs font-semibold leading-snug text-foreground group-hover:text-primary transition-colors">
                   {cat.label}
                 </p>
               </Link>
@@ -199,6 +201,7 @@ const Index = () => {
                   src={src}
                   alt="Design award"
                   className="h-16 w-auto shrink-0 object-contain opacity-80 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
+                  loading="lazy"
                 />
               ))}
             </div>
@@ -224,7 +227,7 @@ const Index = () => {
               <Link
                 key={product.id}
                 to={`/shop/${product.slug}`}
-                className="group overflow-hidden rounded-lg bg-background shadow-soft transition-shadow hover:shadow-strong"
+                className="group overflow-hidden rounded-lg bg-background shadow-soft transition-all hover:shadow-strong hover:-translate-y-1"
               >
                 {/* Product image */}
                 <div className="relative aspect-square overflow-hidden bg-secondary">
@@ -278,17 +281,39 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── See JIMMY in Action placeholder ───────────────── */}
-      <section className="section-padding-md">
-        <div className="container-jimmy text-center">
-          <h2 className="mb-2 text-foreground">See JIMMY in Action</h2>
-          <p className="text-small">Video content coming soon</p>
+      {/* ── See JIMMY in Action — Video Section ───────────── */}
+      <section className="section-padding-md bg-background">
+        <div className="container-jimmy">
+          <div className="mb-8 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Watch</p>
+            <h2 className="text-foreground">See JIMMY in Action</h2>
+            <p className="mt-1 text-sm text-muted-foreground">Experience the power and innovation of JIMMY products</p>
+          </div>
+          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-lg">
+            <div className="aspect-video bg-jimmy-dark">
+              <img
+                src="/images/products/jimmy-pw11-pro-max.jpg"
+                alt="JIMMY product demo video thumbnail"
+                className="h-full w-full object-cover opacity-70"
+                loading="lazy"
+              />
+            </div>
+            <button
+              className="absolute inset-0 flex items-center justify-center transition-colors group"
+              aria-label="Play video"
+            >
+              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-accent shadow-strong transition-transform group-hover:scale-110">
+                <Play className="h-8 w-8 text-accent-foreground ml-1" fill="currentColor" />
+              </div>
+            </button>
+          </div>
         </div>
       </section>
 
       {/* ── Happy Customers Review placeholder ────────────── */}
       <section className="section-padding-md bg-secondary">
         <div className="container-jimmy text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Testimonials</p>
           <h2 className="mb-2 text-foreground">Happy Customers Review</h2>
           <p className="text-small">Testimonials coming soon</p>
         </div>
