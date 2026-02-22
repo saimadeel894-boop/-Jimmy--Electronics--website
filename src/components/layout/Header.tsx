@@ -1,4 +1,4 @@
-import { Search, MapPin, User, ChevronDown, Heart } from "lucide-react";
+import { Search, MapPin, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -62,18 +62,13 @@ const Header = () => {
               <p className="text-[10px] text-primary-foreground/70">Delivering to:</p>
               <p className="text-sm font-bold">South Africa</p>
             </div>
-            <ChevronDown className="h-3.5 w-3.5 text-primary-foreground/60" />
+            
           </button>
 
           {/* My Account */}
           <button className="hidden items-center gap-2 text-primary-foreground/90 hover:text-primary-foreground md:flex shrink-0">
             <User className="h-6 w-6 shrink-0" strokeWidth={1.5} />
             <span className="text-sm font-semibold">My Account</span>
-          </button>
-
-          {/* Wishlist */}
-          <button className="hidden text-primary-foreground/90 hover:text-primary-foreground lg:flex shrink-0" aria-label="Wishlist">
-            <Heart className="h-5 w-5" strokeWidth={1.5} />
           </button>
 
           {/* Cart Drawer */}

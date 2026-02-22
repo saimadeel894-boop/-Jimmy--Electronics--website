@@ -124,28 +124,32 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Right — Light blue card with product image behind text */}
+            {/* Right — Light blue card with product image top half */}
             <div className="relative flex min-h-[380px] flex-col overflow-hidden bg-jimmy-light-blue md:min-h-[500px]">
-              {/* Product image — positioned to fill and sit behind */}
-              <img
-                src="/images/products/jimmy-h8-flex.jpg"
-                alt="JIMMY JV83 PRO"
-                className="absolute inset-0 h-full w-full object-cover object-top opacity-90"
-              />
-              {/* Light blue gradient overlay bottom half */}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-jimmy-light-blue" style={{ background: 'linear-gradient(to bottom, transparent 30%, hsl(214, 75%, 95%) 65%)' }} />
-              {/* Text overlay centered at top */}
-              <div className="relative z-10 flex flex-1 flex-col items-center justify-start pt-5 text-center md:pt-8">
-                <p className="text-lg font-extrabold tracking-wider text-primary mb-1">JIMMY</p>
-                <p className="mb-0.5 text-sm font-medium tracking-wide text-foreground/80">
-                  JIMMY JV83 PRO
-                </p>
-                <h2 className="mb-1 text-3xl font-extrabold text-foreground md:text-[38px] md:leading-tight">
-                  From {formatZAR(4990)}
-                </h2>
-                <p className="mb-5 text-sm text-muted-foreground">
-                  Designed for modern homes, pets,<br />and everyday mess
-                </p>
+              {/* Product image — covers top ~45% */}
+              <div className="relative h-[45%] w-full overflow-hidden">
+                <img
+                  src="/images/products/jimmy-h8-flex.jpg"
+                  alt="JIMMY JV83 PRO"
+                  className="h-full w-full object-cover object-top"
+                />
+                {/* Gradient fade to light blue */}
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 40%, hsl(214, 75%, 95%) 100%)' }} />
+                {/* Text overlay centered on image */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                  <p className="mb-0.5 text-sm font-semibold tracking-wide text-foreground">
+                    JIMMY JV83 PRO
+                  </p>
+                  <h2 className="mb-1 text-3xl font-extrabold text-foreground md:text-[38px] md:leading-tight">
+                    From {formatZAR(4990)}
+                  </h2>
+                  <p className="mb-0 text-sm text-foreground/70">
+                    Designed for modern homes, pets,<br />and everyday mess
+                  </p>
+                </div>
+              </div>
+              {/* Clean light-blue lower area with button */}
+              <div className="flex flex-1 flex-col items-center justify-start pt-6">
                 <Button
                   asChild
                   className="rounded-none bg-primary px-8 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all"
@@ -158,16 +162,16 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Award Banner — JIMMY logo + tagline ───────────── */}
-      <section className="bg-jimmy-light-blue py-5">
-        <div className="container-jimmy flex flex-col items-center gap-3">
+      {/* ── Award Banner ───────────── */}
+      <section className="bg-jimmy-light-blue py-6">
+        <div className="container-jimmy flex flex-col items-center gap-4">
           <img
             src="/images/awards-strip.png"
             alt="Award logos"
-            className="h-8 w-auto max-w-full object-contain"
+            className="h-auto w-full max-w-[600px] object-contain"
             loading="lazy"
           />
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary text-center">
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary text-center">
             Award-winning home technology delivered across Africa
           </p>
         </div>
