@@ -80,17 +80,16 @@ const Index = () => {
   return (
     <MainLayout>
 
-      {/* ── Hero — Two-column split matching reference exactly ──────── */}
-      <section className="bg-background">
-        <div className="container-jimmy py-3">
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-[58fr_42fr]">
+      {/* ── Hero — Two-column split matching reference ──────── */}
+      <section className="bg-jimmy-light-blue">
+        <div className="container-jimmy py-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-[58fr_42fr]">
 
             {/* Left — Olive/Gold feature card with video */}
             <div
-              className="relative flex min-h-[380px] flex-col justify-end overflow-hidden rounded-md md:min-h-[500px]"
+              className="relative flex min-h-[380px] flex-col justify-end overflow-hidden md:min-h-[500px]"
               style={{ backgroundColor: "hsl(45, 50%, 38%)" }}
             >
-              {/* Autoplay muted loop video background */}
               <video
                 autoPlay
                 loop
@@ -125,16 +124,19 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Right — Light blue card */}
-            <div className="relative flex min-h-[380px] flex-col overflow-hidden rounded-md bg-jimmy-light-blue md:min-h-[500px]">
-              {/* Product image fills background */}
+            {/* Right — Light blue card with product image behind text */}
+            <div className="relative flex min-h-[380px] flex-col overflow-hidden bg-jimmy-light-blue md:min-h-[500px]">
+              {/* Product image — positioned to fill and sit behind */}
               <img
                 src="/images/products/jimmy-h8-flex.jpg"
                 alt="JIMMY JV83 PRO"
-                className="absolute inset-0 h-full w-full object-cover object-center"
+                className="absolute inset-0 h-full w-full object-cover object-top opacity-90"
               />
-              {/* Text overlay top-center */}
-              <div className="relative z-10 flex flex-col items-center p-6 pt-8 text-center md:p-10 md:pt-10">
+              {/* Light blue gradient overlay bottom half */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-jimmy-light-blue" style={{ background: 'linear-gradient(to bottom, transparent 30%, hsl(214, 75%, 95%) 65%)' }} />
+              {/* Text overlay centered at top */}
+              <div className="relative z-10 flex flex-1 flex-col items-center justify-start pt-5 text-center md:pt-8">
+                <p className="text-lg font-extrabold tracking-wider text-primary mb-1">JIMMY</p>
                 <p className="mb-0.5 text-sm font-medium tracking-wide text-foreground/80">
                   JIMMY JV83 PRO
                 </p>
@@ -156,23 +158,23 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Award Banner — single strip ───────────── */}
-      <section className="bg-jimmy-light-blue py-3">
-        <div className="container-jimmy flex flex-col items-center gap-2">
+      {/* ── Award Banner — JIMMY logo + tagline ───────────── */}
+      <section className="bg-jimmy-light-blue py-5">
+        <div className="container-jimmy flex flex-col items-center gap-3">
           <img
             src="/images/awards-strip.png"
-            alt="Award-winning home technology"
-            className="h-7 w-auto object-contain"
+            alt="Award logos"
+            className="h-8 w-auto max-w-full object-contain"
             loading="lazy"
           />
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary text-center">
             Award-winning home technology delivered across Africa
           </p>
         </div>
       </section>
 
       {/* ── Category Grid ────────────────── */}
-      <section className="bg-jimmy-light-blue pb-10 pt-6">
+      <section className="bg-jimmy-light-blue pb-10 pt-4">
         <div className="container-jimmy">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             {categories.map((cat) => (
