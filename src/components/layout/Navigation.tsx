@@ -1,7 +1,8 @@
 import { NavLink } from "@/components/NavLink";
-import { Menu, MessageCircle, Plus, ShieldCheck } from "lucide-react";
-import { useState } from "react";
+import { Menu, MessageCircle, ChevronDown, ShieldCheck } from "lucide-react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -9,22 +10,76 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 
-// Matches reference: Home, Best Sellers (+), Parts & Accessories, Support (+), Deals (+), Blog
-const navLinks = [
+interface NavItem {
+  label: string;
+  to: string;
+  hasDropdown: boolean;
+  children?: { label: string; to: string; desc?: string }[];
+}
+
+const navLinks: NavItem[] = [
   { label: "Home", to: "/", hasDropdown: false },
-  { label: "Best Sellers", to: "/best-sellers", hasDropdown: true },
+  {
+    label: "Best Sellers",
+    to: "/best-sellers",
+    hasDropdown: true,
+    children: [
+      { label: "Cordless Vacuums", to: "/category/stick-vacuum", desc: "Powerful stick vacuums" },
+      { label: "Wet & Dry Vacuums", to: "/category/wet-dry-vacuum", desc: "Multi-surface cleaning" },
+      { label: "Bed Vacuums", to: "/category/bed-vacuum", desc: "Anti-mite cleaning" },
+      { label: "Kitchen Appliances", to: "/category/kitchen", desc: "Air fryers & more" },
+    ],
+  },
   { label: "Parts & Accessories", to: "/category/parts-accessories", hasDropdown: false },
-  { label: "Support", to: "/support", hasDropdown: true },
-  { label: "Deals", to: "/deals", hasDropdown: true },
+  {
+    label: "Support",
+    to: "/support",
+    hasDropdown: true,
+    children: [
+      { label: "FAQ", to: "/support#faq" },
+      { label: "Warranty", to: "/support#warranty" },
+      { label: "Contact Us", to: "/support#contact" },
+      { label: "Shipping Info", to: "/support#shipping" },
+    ],
+  },
+  {
+    label: "Deals",
+    to: "/deals",
+    hasDropdown: true,
+    children: [
+      { label: "Current Promotions", to: "/deals" },
+      { label: "Bundle Offers", to: "/deals#bundles" },
+      { label: "Clearance", to: "/deals#clearance" },
+    ],
+  },
   { label: "Blog", to: "/blog", hasDropdown: false },
 ];
 
 const WHATSAPP_NUMBER = "27100001234";
 const WHATSAPP_MSG = encodeURIComponent("Hi, I need help with a Jimmy Africa product.");
 
+const DropdownMenu = ({ items }: { items: NonNullable<NavItem["children"]> }) => (
+  <div className="absolute left-0 top-full z-overlay min-w-[220px] rounded-md border bg-popover py-2 shadow-strong opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-150">
+    {items.map((item) => (
+      <Link
+        key={item.to}
+        to={item.to}
+        className="block px-4 py-2.5 text-sm text-popover-foreground hover:bg-accent/10 hover:text-primary transition-colors"
+      >
+        <span className="font-medium">{item.label}</span>
+        {item.desc && (
+          <span className="block text-xs text-muted-foreground mt-0.5">{item.desc}</span>
+        )}
+      </Link>
+    ))}
+  </div>
+);
+
 const Navigation = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
 
   return (
     <nav className="z-nav w-full bg-primary">
@@ -33,24 +88,26 @@ const Navigation = () => {
         {/* Desktop Nav Links */}
         <ul className="hidden items-center gap-0 md:flex">
           {navLinks.map((link) => (
-            <li key={link.to}>
+            <li key={link.to} className="group relative">
               <NavLink
                 to={link.to}
-                className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-primary-foreground/80 transition-colors hover:text-primary-foreground"
+                className="flex items-center gap-1 px-3 py-3 text-sm font-medium text-primary-foreground/80 transition-colors hover:text-primary-foreground"
                 activeClassName="text-accent font-semibold"
               >
                 {link.label}
                 {link.hasDropdown && (
-                  <Plus className="h-3.5 w-3.5 text-primary-foreground/60" />
+                  <ChevronDown className="h-3 w-3 text-primary-foreground/60 transition-transform group-hover:rotate-180" />
                 )}
               </NavLink>
+              {link.hasDropdown && link.children && (
+                <DropdownMenu items={link.children} />
+              )}
             </li>
           ))}
         </ul>
 
         {/* Desktop Right — DHL pill + WhatsApp */}
         <div className="hidden items-center gap-2 md:flex">
-          {/* DHL Yellow Badge — matches reference */}
           <div className="flex items-center gap-2 rounded-sm bg-accent px-3 py-1.5">
             <ShieldCheck className="h-4 w-4 text-accent-foreground" />
             <div className="leading-tight">
@@ -63,7 +120,6 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* WhatsApp Green Button */}
           <a
             href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`}
             target="_blank"
@@ -100,15 +156,48 @@ const Navigation = () => {
               <ul className="flex flex-col py-2">
                 {navLinks.map((link) => (
                   <li key={link.to}>
-                    <NavLink
-                      to={link.to}
-                      className="flex items-center justify-between px-5 py-3.5 text-sm font-medium text-primary-foreground/80 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground"
-                      activeClassName="text-accent font-semibold bg-primary-foreground/10"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      <span>{link.label}</span>
-                      {link.hasDropdown && <Plus className="h-4 w-4 text-primary-foreground/50" />}
-                    </NavLink>
+                    {link.hasDropdown ? (
+                      <>
+                        <button
+                          onClick={() =>
+                            setExpandedMobile(expandedMobile === link.label ? null : link.label)
+                          }
+                          className="flex w-full items-center justify-between px-5 py-3.5 text-sm font-medium text-primary-foreground/80 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                        >
+                          <span>{link.label}</span>
+                          <ChevronDown
+                            className={cn(
+                              "h-4 w-4 text-primary-foreground/50 transition-transform",
+                              expandedMobile === link.label && "rotate-180"
+                            )}
+                          />
+                        </button>
+                        {expandedMobile === link.label && link.children && (
+                          <ul className="bg-primary-foreground/5 py-1">
+                            {link.children.map((child) => (
+                              <li key={child.to}>
+                                <NavLink
+                                  to={child.to}
+                                  className="block px-8 py-2.5 text-sm text-primary-foreground/70 hover:text-primary-foreground"
+                                  onClick={() => setMobileOpen(false)}
+                                >
+                                  {child.label}
+                                </NavLink>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </>
+                    ) : (
+                      <NavLink
+                        to={link.to}
+                        className="flex items-center justify-between px-5 py-3.5 text-sm font-medium text-primary-foreground/80 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                        activeClassName="text-accent font-semibold bg-primary-foreground/10"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        <span>{link.label}</span>
+                      </NavLink>
+                    )}
                   </li>
                 ))}
               </ul>
