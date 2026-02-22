@@ -2,6 +2,7 @@ import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Truck, RotateCcw, Headphones, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 // ── Product card data (mock) ──────────────────────────────────
 const bestSellers = [
@@ -76,88 +77,71 @@ const awardImages = [
 const formatZAR = (n: number) =>
   "R " + n.toLocaleString("en-ZA");
 
+const trustBadges = [
+  { icon: Truck, title: "Free delivery for R2,500+ orders", desc: "We deliver in 7–20 business days!" },
+  { icon: RotateCcw, title: "Satisfied or refunded", desc: "Free returns within 14 days" },
+  { icon: Headphones, title: "We are available Mon–Sat", desc: "Contact us by chat, mail, phone" },
+  { icon: ShieldCheck, title: "100% Secure payments", desc: "Visa, Mastercard, PayFast, SnapScan" },
+];
+
 const Index = () => {
   return (
     <MainLayout>
 
-      {/* ── Hero — Two-column split matching reference ──────── */}
+      {/* ── Hero — Two-column split ──────── */}
       <section className="bg-jimmy-light-blue">
         <div className="container-jimmy py-4">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-[58fr_42fr]">
 
-            {/* Left — Olive/Gold feature card with video */}
-            <div
+            {/* Left — Video card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
               className="relative flex min-h-[380px] flex-col justify-end overflow-hidden md:min-h-[500px]"
               style={{ backgroundColor: "hsl(45, 50%, 38%)" }}
             >
               <video
-                autoPlay
-                loop
-                muted
-                playsInline
+                autoPlay loop muted playsInline
                 className="absolute inset-0 h-full w-full object-cover"
                 poster="/images/products/jimmy-pw11-pro-max.jpg"
               >
                 <source src="https://jimmyafrica.com/wp-content/uploads/2026/01/vid-pw11.mp4" type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-black/20" />
-
               <div className="relative z-10 p-6 pb-10 text-primary-foreground md:p-10 md:pb-14">
-                <p className="mb-1 text-sm font-medium tracking-wide text-primary-foreground/90">
-                  JIMMY PW11 PRO MAX
-                </p>
-                <h1 className="mb-1 text-3xl font-extrabold md:text-[42px] md:leading-tight">
-                  From {formatZAR(12890)}
-                </h1>
-                <p className="mb-1 text-sm font-medium text-primary-foreground/90">
-                  5-in-1 Vacuum &amp; Washer
-                </p>
-                <p className="mb-6 text-sm text-primary-foreground/80">
-                  A new definition of smart, full-home cleaning
-                </p>
-                <Button
-                  asChild
-                  className="rounded-none bg-primary px-8 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all"
-                >
+                <p className="mb-1 text-sm font-medium tracking-wide text-primary-foreground/90">JIMMY PW11 PRO MAX</p>
+                <h1 className="mb-1 text-3xl font-extrabold md:text-[42px] md:leading-tight">From {formatZAR(12890)}</h1>
+                <p className="mb-1 text-sm font-medium text-primary-foreground/90">5-in-1 Vacuum &amp; Washer</p>
+                <p className="mb-6 text-sm text-primary-foreground/80">A new definition of smart, full-home cleaning</p>
+                <Button asChild className="rounded-none bg-primary px-8 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all">
                   <Link to="/shop">Learn More</Link>
                 </Button>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Right — Light blue card with product image top half */}
-            <div className="relative flex min-h-[380px] flex-col overflow-hidden bg-jimmy-light-blue md:min-h-[500px]">
-              {/* Product image — covers top ~45% */}
+            {/* Right — Product image card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
+              className="relative flex min-h-[380px] flex-col overflow-hidden bg-jimmy-light-blue md:min-h-[500px]"
+            >
               <div className="relative h-[45%] w-full overflow-hidden">
-                <img
-                  src="/images/products/jimmy-h8-flex.jpg"
-                  alt="JIMMY JV83 PRO"
-                  className="h-full w-full object-cover object-top"
-                />
-                {/* Gradient fade to light blue */}
+                <img src="/images/products/jimmy-h8-flex.jpg" alt="JIMMY JV83 PRO" className="h-full w-full object-cover object-top" />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 40%, hsl(214, 75%, 95%) 100%)' }} />
-                {/* Text overlay centered on image */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-                  <p className="mb-0.5 text-sm font-semibold tracking-wide text-foreground">
-                    JIMMY JV83 PRO
-                  </p>
-                  <h2 className="mb-1 text-3xl font-extrabold text-foreground md:text-[38px] md:leading-tight">
-                    From {formatZAR(4990)}
-                  </h2>
-                  <p className="mb-0 text-sm text-foreground/70">
-                    Designed for modern homes, pets,<br />and everyday mess
-                  </p>
+                  <p className="mb-0.5 text-sm font-semibold tracking-wide text-foreground">JIMMY JV83 PRO</p>
+                  <h2 className="mb-1 text-3xl font-extrabold text-foreground md:text-[38px] md:leading-tight">From {formatZAR(4990)}</h2>
+                  <p className="mb-0 text-sm text-foreground/70">Designed for modern homes, pets,<br />and everyday mess</p>
                 </div>
               </div>
-              {/* Clean light-blue lower area with button */}
               <div className="flex flex-1 flex-col items-center justify-start pt-6">
-                <Button
-                  asChild
-                  className="rounded-none bg-primary px-8 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all"
-                >
+                <Button asChild className="rounded-none bg-primary px-8 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all">
                   <Link to="/shop">Shop Now</Link>
                 </Button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -165,12 +149,7 @@ const Index = () => {
       {/* ── Award Banner ───────────── */}
       <section className="bg-jimmy-light-blue py-6">
         <div className="container-jimmy flex flex-col items-center gap-4">
-          <img
-            src="/images/awards-strip.png"
-            alt="Award logos"
-            className="h-auto w-full max-w-[600px] object-contain"
-            loading="lazy"
-          />
+          <img src="/images/awards-strip.png" alt="Award logos" className="h-auto w-full max-w-[600px] object-contain" loading="lazy" />
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary text-center">
             Award-winning home technology delivered across Africa
           </p>
@@ -181,24 +160,26 @@ const Index = () => {
       <section className="bg-jimmy-light-blue pb-10 pt-4">
         <div className="container-jimmy">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            {categories.map((cat) => (
-              <Link
+            {categories.map((cat, i) => (
+              <motion.div
                 key={cat.slug}
-                to={`/category/${cat.slug}`}
-                className="group flex flex-col items-center gap-2 rounded-md bg-background p-4 text-center transition-all hover:shadow-strong hover:-translate-y-1"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.3, delay: i * 0.06, ease: "easeOut" }}
               >
-                <div className="flex h-28 w-full items-center justify-center">
-                  <img
-                    src={cat.image}
-                    alt={cat.label}
-                    className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <p className="whitespace-pre-line text-xs font-bold leading-tight text-foreground group-hover:text-primary transition-colors">
-                  {cat.label}
-                </p>
-              </Link>
+                <Link
+                  to={`/category/${cat.slug}`}
+                  className="group flex flex-col items-center gap-2 rounded-md bg-background p-4 text-center transition-all hover:shadow-strong hover:-translate-y-1"
+                >
+                  <div className="flex h-28 w-full items-center justify-center">
+                    <img src={cat.image} alt={cat.label} className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" />
+                  </div>
+                  <p className="whitespace-pre-line text-xs font-bold leading-tight text-foreground group-hover:text-primary transition-colors">
+                    {cat.label}
+                  </p>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -215,13 +196,7 @@ const Index = () => {
           <div className="overflow-hidden">
             <div className="flex animate-marquee items-center gap-10">
               {[...awardImages, ...awardImages].map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt="Design award"
-                  className="h-16 w-auto shrink-0 object-contain opacity-80 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
-                  loading="lazy"
-                />
+                <img key={i} src={src} alt="Design award" className="h-16 w-auto shrink-0 object-contain opacity-80 grayscale hover:grayscale-0 hover:opacity-100 transition-all" loading="lazy" />
               ))}
             </div>
           </div>
@@ -233,63 +208,36 @@ const Index = () => {
         <div className="container-jimmy">
           <div className="mb-8 flex items-end justify-between">
             <h2 className="text-foreground">Best Selling Products in South Africa</h2>
-            <Link
-              to="/shop"
-              className="hidden items-center gap-1 text-sm font-semibold text-primary hover:underline sm:flex"
-            >
+            <Link to="/shop" className="hidden items-center gap-1 text-sm font-semibold text-primary hover:underline sm:flex">
               See All Products <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {bestSellers.map((product) => (
-              <Link
-                key={product.id}
-                to={`/shop/${product.slug}`}
-                className="group overflow-hidden rounded-md bg-background shadow-soft transition-all hover:shadow-strong hover:-translate-y-1"
-              >
+              <Link key={product.id} to={`/shop/${product.slug}`} className="group overflow-hidden rounded-md bg-background shadow-soft transition-all hover:shadow-strong hover:-translate-y-1">
                 <div className="relative aspect-square overflow-hidden bg-secondary">
                   <div className="absolute left-2 top-2 z-10 flex flex-col gap-1">
                     {product.badges.includes("New") && (
-                      <span className="rounded-sm bg-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary-foreground">
-                        New
-                      </span>
+                      <span className="rounded-sm bg-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary-foreground">New</span>
                     )}
                     {product.badges.includes("On Sale") && (
-                      <span className="rounded-sm bg-destructive px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-destructive-foreground">
-                        On Sale
-                      </span>
+                      <span className="rounded-sm bg-destructive px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-destructive-foreground">On Sale</span>
                     )}
                     {product.savePct && (
-                      <span className="rounded-sm bg-accent px-2 py-0.5 text-[10px] font-bold text-accent-foreground">
-                        Save {product.savePct}%
-                      </span>
+                      <span className="rounded-sm bg-accent px-2 py-0.5 text-[10px] font-bold text-accent-foreground">Save {product.savePct}%</span>
                     )}
                   </div>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
+                  <img src={product.image} alt={product.name} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
                 </div>
                 <div className="p-4">
-                  <h3 className="mb-2 text-xs font-semibold leading-snug text-foreground line-clamp-2">
-                    {product.name}
-                  </h3>
+                  <h3 className="mb-2 text-xs font-semibold leading-snug text-foreground line-clamp-2">{product.name}</h3>
                   <div className="flex items-baseline gap-2 flex-wrap">
-                    <span className="text-base font-bold text-primary">
-                      {formatZAR(product.price)}
-                    </span>
+                    <span className="text-base font-bold text-primary">{formatZAR(product.price)}</span>
                     {product.salePrice && (
-                      <span className="text-xs text-muted-foreground line-through">
-                        {formatZAR(product.salePrice)}
-                      </span>
+                      <span className="text-xs text-muted-foreground line-through">{formatZAR(product.salePrice)}</span>
                     )}
                   </div>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {product.reviews} reviews
-                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">{product.reviews} reviews</p>
                 </div>
               </Link>
             ))}
@@ -302,14 +250,7 @@ const Index = () => {
         <div className="container-jimmy text-center">
           <h2 className="mb-8 text-foreground">See JIMMY in Action</h2>
           <div className="relative mx-auto max-w-4xl overflow-hidden rounded-md">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full aspect-video object-cover"
-              poster="/images/products/jimmy-pw11-pro-max.jpg"
-            >
+            <video autoPlay loop muted playsInline className="w-full aspect-video object-cover" poster="/images/products/jimmy-pw11-pro-max.jpg">
               <source src="https://jimmyafrica.com/wp-content/uploads/2026/01/vid-pw11.mp4" type="video/mp4" />
             </video>
           </div>
@@ -328,19 +269,21 @@ const Index = () => {
       <section className="border-t py-10">
         <div className="container-jimmy">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
-            {[
-              { icon: Truck, title: "Free delivery for R2,500+ orders", desc: "We deliver in 7–20 business days!" },
-              { icon: RotateCcw, title: "Satisfied or refunded", desc: "Free returns within 14 days" },
-              { icon: Headphones, title: "We are available Mon–Sat", desc: "Contact us by chat, mail, phone" },
-              { icon: ShieldCheck, title: "100% Secure payments", desc: "Visa, Mastercard, PayFast, SnapScan" },
-            ].map((b) => (
-              <div key={b.title} className="flex flex-col items-center text-center">
+            {trustBadges.map((b, i) => (
+              <motion.div
+                key={b.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.35, delay: i * 0.08, ease: "easeOut" }}
+                className="flex flex-col items-center text-center"
+              >
                 <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
                   <b.icon className="h-7 w-7 text-primary" />
                 </div>
                 <p className="text-sm font-bold text-foreground">{b.title}</p>
                 <p className="text-xs text-muted-foreground">{b.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
