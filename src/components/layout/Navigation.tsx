@@ -1,5 +1,5 @@
 import { NavLink } from "@/components/NavLink";
-import { Menu, MessageCircle, ChevronDown, ShieldCheck } from "lucide-react";
+import { Menu, MessageCircle, ChevronDown, Plus, ShieldCheck } from "lucide-react";
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -96,7 +96,7 @@ const Navigation = () => {
               >
                 {link.label}
                 {link.hasDropdown && (
-                  <ChevronDown className="h-3 w-3 text-primary-foreground/60 transition-transform group-hover:rotate-180" />
+                  <Plus className="h-3.5 w-3.5 text-primary-foreground/60 transition-transform group-hover:rotate-45" />
                 )}
               </NavLink>
               {link.hasDropdown && link.children && (

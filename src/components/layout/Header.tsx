@@ -30,7 +30,7 @@ const Header = () => {
             <img
               src="/images/logo-white.png"
               alt="Jimmy Africa - Official Exclusive Distributor"
-              className="h-10 w-auto"
+              className="h-8 w-auto md:h-10"
             />
           </Link>
 
