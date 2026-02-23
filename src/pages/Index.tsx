@@ -246,11 +246,25 @@ const Index = () => {
       </section>
 
       {/* ── See JIMMY in Action — Video Section ───────────── */}
-      <section className="section-padding-md bg-background">
+      <section className="bg-background py-12 md:py-16">
         <div className="container-jimmy text-center">
-          <h2 className="mb-8 text-foreground">See JIMMY in Action</h2>
-          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-md">
-            <video autoPlay loop muted playsInline className="w-full aspect-video object-cover" poster="/images/products/jimmy-pw11-pro-max.jpg">
+          <h2 className="mb-8 text-2xl font-bold text-foreground md:text-3xl">See JIMMY in Action</h2>
+          <div className="relative w-full overflow-hidden"
+            style={{
+              paddingBottom: '56.25%',
+              backgroundImage: 'url(/images/products/jimmy-pw11-pro-max.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="absolute inset-0 h-full w-full object-cover"
+            >
               <source src="https://jimmyafrica.com/wp-content/uploads/2026/01/vid-pw11.mp4" type="video/mp4" />
             </video>
           </div>
