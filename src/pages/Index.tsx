@@ -268,12 +268,10 @@ const Index = () => {
               poster="/images/products/jimmy-pw11-pro-max.jpg"
               className="absolute inset-0 h-full w-full object-cover"
               onError={(e) => {
-                // If video fails, keep poster visible — do not hide
                 (e.currentTarget as HTMLVideoElement).style.opacity = '0';
               }}
             >
-              <source src="/videos/vid-pw11.mp4" type="video/mp4" />
-              <source src="https://jimmyafrica.com/wp-content/uploads/2026/01/vid-pw11.mp4" type="video/mp4" />
+              <source src="/videos/jimmy-action.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
