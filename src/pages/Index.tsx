@@ -249,22 +249,30 @@ const Index = () => {
       <section className="bg-background py-12 md:py-16">
         <div className="container-jimmy text-center">
           <h2 className="mb-8 text-2xl font-bold text-foreground md:text-3xl">See JIMMY in Action</h2>
-          <div className="relative w-full overflow-hidden"
-            style={{
-              paddingBottom: '56.25%',
-              backgroundImage: 'url(/images/products/jimmy-pw11-pro-max.jpg)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
+          <div
+            className="relative w-full overflow-hidden"
+            style={{ aspectRatio: '16 / 9' }}
           >
+            {/* Poster fallback — always visible behind video */}
+            <img
+              src="/images/products/jimmy-pw11-pro-max.jpg"
+              alt="JIMMY PW11 Pro Max"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
             <video
               autoPlay
               loop
               muted
               playsInline
               preload="auto"
+              poster="/images/products/jimmy-pw11-pro-max.jpg"
               className="absolute inset-0 h-full w-full object-cover"
+              onError={(e) => {
+                // If video fails, keep poster visible — do not hide
+                (e.currentTarget as HTMLVideoElement).style.opacity = '0';
+              }}
             >
+              <source src="/videos/vid-pw11.mp4" type="video/mp4" />
               <source src="https://jimmyafrica.com/wp-content/uploads/2026/01/vid-pw11.mp4" type="video/mp4" />
             </video>
           </div>
