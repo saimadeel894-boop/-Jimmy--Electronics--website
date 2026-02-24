@@ -245,34 +245,42 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── See JIMMY in Action — Video Section ───────────── */}
+      {/* ── See JIMMY in Action — Video Grid ───────────── */}
       <section className="bg-background py-12 md:py-16">
         <div className="container-jimmy text-center">
           <h2 className="mb-8 text-2xl font-bold text-foreground md:text-3xl">See JIMMY in Action</h2>
-          <div
-            className="relative w-full overflow-hidden"
-            style={{ aspectRatio: '16 / 9' }}
-          >
-            {/* Poster fallback — always visible behind video */}
-            <img
-              src="/images/products/jimmy-pw11-pro-max.jpg"
-              alt="JIMMY PW11 Pro Max"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              poster="/images/products/jimmy-pw11-pro-max.jpg"
-              className="absolute inset-0 h-full w-full object-cover"
-              onError={(e) => {
-                (e.currentTarget as HTMLVideoElement).style.opacity = '0';
-              }}
-            >
-              <source src="/videos/jimmy-action.mp4" type="video/mp4" />
-            </video>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              "/videos/jimmy-action-1.mp4",
+              "https://jimmyafrica.com/wp-content/uploads/2026/01/AQMmYWRfDxABF3tbM_B2TuOJsVUzPKCDQV_kyRgfRX832xhseC9M68MJaoKK7JQGnzk4yTv0Xl4aswXBPYjBuD9gXW2_t-MmTtyv1jLhBeYhxA.mp4",
+              "/videos/jimmy-action-3.mp4",
+              "/videos/jimmy-action-4.mp4",
+            ].map((src, i) => (
+              <div
+                key={i}
+                className="relative w-full overflow-hidden bg-foreground/5"
+                style={{ aspectRatio: '9 / 16' }}
+              >
+                <img
+                  src="/images/products/jimmy-pw11-pro-max.jpg"
+                  alt="JIMMY product demo"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLVideoElement).style.opacity = '0';
+                  }}
+                >
+                  <source src={src} type="video/mp4" />
+                </video>
+              </div>
+            ))}
           </div>
         </div>
       </section>
