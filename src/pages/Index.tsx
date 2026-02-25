@@ -75,7 +75,7 @@ const awardImages = [
 ];
 
 const formatZAR = (n: number) =>
-  "R " + n.toLocaleString("en-ZA");
+  "R " + n.toLocaleString("en-US");
 
 const trustBadges = [
   { icon: Truck, title: "Free delivery for R2,500+ orders", desc: "We deliver in 7–20 business days!" },
