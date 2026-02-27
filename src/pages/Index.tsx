@@ -74,8 +74,7 @@ const awardImages = [
   "/images/awards/award-8.webp",
 ];
 
-const formatZAR = (n: number) =>
-  "R " + n.toLocaleString("en-US");
+import { formatZAR } from "@/lib/format";
 
 const trustBadges = [
   { icon: Truck, title: "Free delivery for R2,500+ orders", desc: "We deliver in 7–20 business days!" },
