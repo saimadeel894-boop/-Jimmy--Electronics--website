@@ -125,18 +125,13 @@ const Index = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
-              className="relative flex min-h-[380px] flex-col overflow-hidden bg-jimmy-light-blue md:min-h-[500px]"
+              className="relative flex min-h-[380px] flex-col justify-start overflow-hidden md:min-h-[500px]"
             >
-              <div className="relative h-[45%] w-full overflow-hidden">
-                <img src="/images/products/jimmy-h8-flex.jpg" alt="JIMMY JV83 PRO" className="h-full w-full object-cover object-top" />
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 40%, hsl(214, 75%, 95%) 100%)' }} />
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-                  <p className="mb-0.5 text-sm font-semibold tracking-wide text-foreground">JIMMY JV83 PRO</p>
-                  <h2 className="mb-1 text-3xl font-extrabold text-foreground md:text-[38px] md:leading-tight">From {formatZAR(4990)}</h2>
-                  <p className="mb-0 text-sm text-foreground/70">Designed for modern homes, pets,<br />and everyday mess</p>
-                </div>
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start pt-6">
+              <img src="/images/products/jimmy-h8-flex.jpg" alt="JIMMY JV83 PRO" className="absolute inset-0 h-full w-full object-cover" />
+              <div className="relative z-10 flex flex-1 flex-col items-center justify-center text-center px-6 pt-10">
+                <p className="mb-1 text-sm font-semibold tracking-wide text-foreground">JIMMY JV83 PRO</p>
+                <h2 className="mb-1 text-3xl font-extrabold text-foreground md:text-[38px] md:leading-tight">From {formatZAR(4990)}</h2>
+                <p className="mb-5 text-sm text-foreground/70">Designed for modern homes, pets,<br />and everyday mess</p>
                 <Button asChild className="rounded-none bg-primary px-8 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all">
                   <Link to="/shop">Shop Now</Link>
                 </Button>
@@ -147,12 +142,12 @@ const Index = () => {
       </section>
 
       {/* ── Award Banner ───────────── */}
-      <section className="bg-jimmy-light-blue py-6">
-        <div className="container-jimmy flex flex-col items-center gap-4">
+      <section className="bg-jimmy-light-blue py-8">
+        <div className="container-jimmy flex flex-col items-center gap-3">
           <img src="/images/awards-strip.png" alt="Award logos" className="h-auto w-full max-w-[600px] object-contain" loading="lazy" />
-          <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary text-center">
+          <h2 className="text-lg font-bold text-primary text-center md:text-xl">
             Award-winning home technology delivered across Africa
-          </p>
+          </h2>
         </div>
       </section>
 
