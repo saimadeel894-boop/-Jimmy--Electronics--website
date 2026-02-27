@@ -1,86 +1,121 @@
 [
   {
-    "id": "jm-vc-001",
-    "name": "JIMMY JV85 Pro Cordless Vacuum",
-    "slug": "jimmy-jv85-pro",
-    "category": "vacuum-cleaners",
-    "price": 8999,
-    "salePrice": 6999,
+    "id": "jm-pw11",
+    "name": "JIMMY PW11 PRO MAX 5-in-1 Cordless Vacuum & Floor Washer",
+    "slug": "jimmy-pw11-pro-max",
+    "category": "wet-dry-vacuum",
+    "price": 36990,
+    "salePrice": 39990,
+    "savePct": 8,
     "currency": "ZAR",
-    "images": ["/placeholder.svg"],
-    "description": "Powerful cordless vacuum with 200AW suction power and intelligent dust sensor.",
+    "images": ["/images/products/jimmy-pw11-pro-max.jpg"],
+    "description": "The ultimate 5-in-1 cleaning solution. Vacuums, washes, and dries your floors simultaneously with powerful 21,000Pa suction.",
+    "features": [
+      "5-in-1 multi-function: vacuum, wash, dry, sweep, mop",
+      "21,000Pa powerful suction",
+      "Self-cleaning system",
+      "LED display with real-time info",
+      "35-minute runtime",
+      "Edge-to-edge cleaning design"
+    ],
     "specs": {
-      "suction": "200AW",
-      "battery": "70 min runtime",
-      "weight": "1.5 kg",
-      "dustbin": "0.6L"
+      "suction": "21,000 Pa",
+      "battery": "35 min runtime",
+      "weight": "4.8 kg",
+      "tank": "0.6L clean / 0.5L dirty",
+      "power": "550W"
     },
-    "badges": ["Sale", "Best Seller"],
+    "badges": ["New", "On Sale"],
     "inStock": true,
-    "rating": 4.8,
-    "reviewCount": 124
+    "rating": 4.9,
+    "reviewCount": 0
   },
   {
-    "id": "jm-vc-002",
-    "name": "JIMMY H9 Flex Handheld Vacuum",
-    "slug": "jimmy-h9-flex",
-    "category": "vacuum-cleaners",
-    "price": 5999,
+    "id": "jm-h8flex",
+    "name": "JIMMY H8 FLEX – 7-in-1 | 550W | 185AW | 65mins – HEPA Cordless Vacuum Cleaner",
+    "slug": "jimmy-h8-flex",
+    "category": "stick-vacuum",
+    "price": 17490,
     "salePrice": null,
+    "savePct": null,
     "currency": "ZAR",
-    "images": ["/placeholder.svg"],
-    "description": "Lightweight and flexible handheld vacuum for quick clean-ups.",
+    "images": ["/images/products/jimmy-h8-flex.jpg"],
+    "description": "Powerful 7-in-1 cordless vacuum with 185AW suction, HEPA filtration, and 65-minute battery life.",
+    "features": [
+      "7-in-1 versatile cleaning",
+      "185AW powerful suction",
+      "HEPA filtration system",
+      "65-minute extended runtime",
+      "Flexible tube for hard-to-reach areas",
+      "LED headlight for visibility"
+    ],
     "specs": {
-      "suction": "160AW",
-      "battery": "50 min runtime",
-      "weight": "1.2 kg",
-      "dustbin": "0.5L"
+      "suction": "185AW",
+      "battery": "65 min runtime",
+      "weight": "1.5 kg (handheld)",
+      "dustbin": "0.5L",
+      "power": "550W"
     },
     "badges": ["New"],
     "inStock": true,
-    "rating": 4.6,
-    "reviewCount": 89
+    "rating": 4.8,
+    "reviewCount": 0
   },
   {
-    "id": "jm-kt-001",
-    "name": "JIMMY Kitchen Pro Blender",
-    "slug": "jimmy-kitchen-pro-blender",
+    "id": "jm-af3",
+    "name": "JIMMY AF3 Multi-Functional Air Fryer | Pan Fry 2-in-1 | 1100W | 4L",
+    "slug": "jimmy-af3-air-fryer",
     "category": "kitchen",
-    "price": 3499,
-    "salePrice": 2799,
-    "currency": "ZAR",
-    "images": ["/placeholder.svg"],
-    "description": "High-performance blender with 1200W motor and 6-blade system.",
-    "specs": {
-      "power": "1200W",
-      "capacity": "1.5L",
-      "blades": "6-blade stainless steel",
-      "speeds": "10 speed settings"
-    },
-    "badges": ["Sale"],
-    "inStock": true,
-    "rating": 4.5,
-    "reviewCount": 67
-  },
-  {
-    "id": "jm-hc-001",
-    "name": "JIMMY Hair Dryer F6 Pro",
-    "slug": "jimmy-hair-dryer-f6-pro",
-    "category": "hair-care",
-    "price": 4299,
+    "price": 9990,
     "salePrice": null,
+    "savePct": null,
     "currency": "ZAR",
-    "images": ["/placeholder.svg"],
-    "description": "Professional hair dryer with negative ion technology for smooth, frizz-free results.",
+    "images": ["/images/products/jimmy-af3-air-fryer.webp"],
+    "description": "2-in-1 air fryer and pan fry with 1100W power. 4L capacity perfect for families.",
+    "features": [
+      "2-in-1 Air Fry & Pan Fry",
+      "1100W powerful heating",
+      "4L large capacity",
+      "360° hot air circulation",
+      "Touch control panel",
+      "Non-stick coating"
+    ],
     "specs": {
-      "power": "1800W",
-      "ionTechnology": "Negative ion",
-      "heatSettings": "3 temperature / 2 speed",
-      "weight": "450g"
+      "power": "1100W",
+      "capacity": "4L",
+      "temperature": "80–200°C",
+      "timer": "60 min max"
     },
     "badges": ["New"],
     "inStock": true,
     "rating": 4.7,
-    "reviewCount": 43
+    "reviewCount": 0
+  },
+  {
+    "id": "jm-mopkit",
+    "name": "Jimmy Water Tank with Mopping Kit (JV53 / JV83 / H9FLEX / H10 Pro)",
+    "slug": "jimmy-water-tank-mopping-kit",
+    "category": "parts-accessories",
+    "price": 1500,
+    "salePrice": null,
+    "savePct": null,
+    "currency": "ZAR",
+    "images": ["/images/products/jimmy-mop-kit.webp"],
+    "description": "Compatible water tank with mopping kit for JV53, JV83, H9FLEX, and H10 Pro models.",
+    "features": [
+      "Compatible with JV53, JV83, H9FLEX, H10 Pro",
+      "Easy-attach water tank",
+      "Microfiber mopping pad included",
+      "Adds mopping capability to your vacuum"
+    ],
+    "specs": {
+      "compatibility": "JV53 / JV83 / H9FLEX / H10 Pro",
+      "tankCapacity": "200ml",
+      "padMaterial": "Microfiber"
+    },
+    "badges": ["New"],
+    "inStock": true,
+    "rating": 4.5,
+    "reviewCount": 0
   }
 ]
