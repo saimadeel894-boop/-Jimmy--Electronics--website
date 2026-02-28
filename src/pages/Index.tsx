@@ -3,54 +3,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Truck, RotateCcw, Headphones, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { formatZAR } from "@/lib/format";
+import products from "@/data/products.json";
 
-// ── Product card data (mock) ──────────────────────────────────
-const bestSellers = [
-  {
-    id: 1,
-    name: "Jimmy Water Tank with Mopping Kit (JV53 / JV83 / H9FLEX / H10 Pro)",
-    price: 1500,
-    salePrice: null,
-    savePct: null,
-    badges: ["New"],
-    reviews: 0,
-    slug: "jimmy-water-tank-mopping-kit",
-    image: "/images/products/jimmy-mop-kit.webp",
-  },
-  {
-    id: 2,
-    name: "JIMMY H8 FLEX – 7-in-1 | 550W | 185AW | 65mins – HEPA Cordless Vacuum Cleaner",
-    price: 17490,
-    salePrice: null,
-    savePct: null,
-    badges: ["New"],
-    reviews: 0,
-    slug: "jimmy-h8-flex",
-    image: "/images/products/jimmy-h8-flex.jpg",
-  },
-  {
-    id: 3,
-    name: "JIMMY AF3 Multi-Functional Air Fryer | Pan Fry 2-in-1 | 1100W | 4L",
-    price: 9990,
-    salePrice: null,
-    savePct: null,
-    badges: ["New"],
-    reviews: 0,
-    slug: "jimmy-af3-air-fryer",
-    image: "/images/products/jimmy-af3-air-fryer.webp",
-  },
-  {
-    id: 4,
-    name: "JIMMY PW11 PRO MAX 5-in-1 Cordless Vacuum & Floor Washer",
-    price: 36990,
-    salePrice: 39990,
-    savePct: 8,
-    badges: ["New", "On Sale"],
-    reviews: 0,
-    slug: "jimmy-pw11-pro-max",
-    image: "/images/products/jimmy-pw11-pro-max.jpg",
-  },
-];
+// Best sellers: same 4 as the reference homepage
+const bestSellerSlugs = ["jimmy-water-tank-mopping-kit", "jimmy-h8-flex", "jimmy-af3-air-fryer", "jimmy-pw11-pro-max"];
+const bestSellers = bestSellerSlugs.map(s => products.find(p => p.slug === s)!).filter(Boolean);
 
 const categories = [
   { label: "Bed\nVacuum Cleaner", slug: "bed-vacuum", image: "/images/categories/bed-vacuum.png" },
@@ -73,8 +31,6 @@ const awardImages = [
   "/images/awards/award-good-design.webp",
   "/images/awards/award-8.webp",
 ];
-
-import { formatZAR } from "@/lib/format";
 
 const trustBadges = [
   { icon: Truck, title: "Free delivery for R2,500+ orders", desc: "We deliver in 7–20 business days!" },
@@ -126,7 +82,7 @@ const Index = () => {
               transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
               className="relative flex min-h-[380px] flex-col justify-start overflow-hidden md:min-h-[500px]"
             >
-              <img src="/images/products/jimmy-h8-flex.jpg" alt="JIMMY JV83 PRO" className="absolute inset-0 h-full w-full object-cover" />
+              <img src="/images/products/jimmy-jv83-pro.jpg" alt="JIMMY JV83 PRO" className="absolute inset-0 h-full w-full object-cover" />
               <div className="relative z-10 flex flex-1 flex-col items-center justify-center text-center px-6 pt-10">
                 <p className="mb-1 text-sm font-semibold tracking-wide text-foreground">JIMMY JV83 PRO</p>
                 <h2 className="mb-1 text-3xl font-extrabold text-foreground md:text-[38px] md:leading-tight">From {formatZAR(4990)}</h2>
@@ -221,7 +177,7 @@ const Index = () => {
                       <span className="rounded-sm bg-accent px-2 py-0.5 text-[10px] font-bold text-accent-foreground">Save {product.savePct}%</span>
                     )}
                   </div>
-                  <img src={product.image} alt={product.name} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
+                  <img src={product.images[0]} alt={product.name} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
                 </div>
                 <div className="p-4">
                   <h3 className="mb-2 text-xs font-semibold leading-snug text-foreground line-clamp-2">{product.name}</h3>
@@ -231,7 +187,7 @@ const Index = () => {
                       <span className="text-xs text-muted-foreground line-through">{formatZAR(product.salePrice)}</span>
                     )}
                   </div>
-                  <p className="mt-1 text-xs text-muted-foreground">{product.reviews} reviews</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{product.reviewCount} reviews</p>
                 </div>
               </Link>
             ))}

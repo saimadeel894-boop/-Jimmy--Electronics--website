@@ -3,10 +3,12 @@ import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "luci
 
 const footerLinks = {
   shop: [
-    { label: "Vacuum Cleaners", to: "/category/vacuum-cleaners" },
+    { label: "Stick Vacuum Cleaners", to: "/category/stick-vacuum" },
+    { label: "Wet & Dry Vacuums", to: "/category/wet-dry-vacuum" },
+    { label: "Bed Vacuum Cleaners", to: "/category/bed-vacuum" },
     { label: "Kitchen Appliances", to: "/category/kitchen" },
     { label: "Hair Care", to: "/category/hair-care" },
-    { label: "Water Purifiers", to: "/category/water-purifiers" },
+    { label: "Water Purifiers", to: "/category/water-purifier" },
     { label: "Parts & Accessories", to: "/category/parts-accessories" },
   ],
   support: [

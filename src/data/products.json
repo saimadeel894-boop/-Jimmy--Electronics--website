@@ -9,7 +9,7 @@
     "savePct": 8,
     "currency": "ZAR",
     "images": ["/images/products/jimmy-pw11-pro-max.jpg"],
-    "description": "The ultimate 5-in-1 cleaning solution. Vacuums, washes, and dries your floors simultaneously with powerful 21,000Pa suction.",
+    "description": "The ultimate 5-in-1 cleaning solution. Vacuums, washes, and dries your floors simultaneously with powerful 21,000Pa suction. Self-cleaning system with LED display for real-time info.",
     "features": [
       "5-in-1 multi-function: vacuum, wash, dry, sweep, mop",
       "21,000Pa powerful suction",
@@ -32,7 +32,7 @@
   },
   {
     "id": "jm-h8flex",
-    "name": "JIMMY H8 FLEX – 7-in-1 | 550W | 185AW | 65mins – HEPA Cordless Vacuum Cleaner",
+    "name": "JIMMY H8 FLEX – 7-in-1 Accessories | 550W | 185AW | 65mins – LCD Screen – Anti Hair Wrapping Technology – HEPA Cordless Vacuum Cleaner",
     "slug": "jimmy-h8-flex",
     "category": "stick-vacuum",
     "price": 17490,
@@ -40,13 +40,14 @@
     "savePct": null,
     "currency": "ZAR",
     "images": ["/images/products/jimmy-h8-flex.jpg"],
-    "description": "Powerful 7-in-1 cordless vacuum with 185AW suction, HEPA filtration, and 65-minute battery life.",
+    "description": "Powerful 7-in-1 cordless vacuum with 185AW suction, HEPA filtration, LCD screen, and anti hair wrapping technology. 65-minute extended battery life for whole-home cleaning.",
     "features": [
-      "7-in-1 versatile cleaning",
+      "7-in-1 versatile cleaning with multiple accessories",
       "185AW powerful suction",
       "HEPA filtration system",
       "65-minute extended runtime",
-      "Flexible tube for hard-to-reach areas",
+      "LCD screen with real-time display",
+      "Anti hair wrapping technology",
       "LED headlight for visibility"
     ],
     "specs": {
@@ -62,8 +63,194 @@
     "reviewCount": 0
   },
   {
+    "id": "jm-jv83pro",
+    "name": "JIMMY JV83 PRO – 500W | 160AW | 5-in-1 Accessories | 65mins – Anti Hair Wrapping – HEPA Cordless Vacuum Cleaner",
+    "slug": "jimmy-jv83-pro",
+    "category": "stick-vacuum",
+    "price": 4990,
+    "salePrice": null,
+    "savePct": null,
+    "currency": "ZAR",
+    "images": ["/images/products/jimmy-jv83-pro.jpg"],
+    "description": "Designed for modern homes, pets, and everyday mess. The JV83 PRO makes daily cleaning a breeze with its lightweight design and powerful 160AW suction. Perfect for tackling crumbs, pet hair, and dust throughout your home.",
+    "features": [
+      "500W high-power motor with 160AW suction",
+      "5-in-1 accessories for versatile cleaning",
+      "Anti hair wrapping technology",
+      "Up to 65 minutes runtime",
+      "HEPA filtration captures 99.97% of particles",
+      "Lightweight ergonomic design"
+    ],
+    "specs": {
+      "suction": "160AW",
+      "battery": "65 min runtime",
+      "weight": "1.49 kg (handheld)",
+      "dustbin": "0.5L",
+      "power": "500W"
+    },
+    "badges": ["New"],
+    "inStock": true,
+    "rating": 4.7,
+    "reviewCount": 0
+  },
+  {
+    "id": "jm-bx7pro",
+    "name": "JIMMY BX7 Pro | 700W | UV-C Sterilization | Ultrasound | 60℃ High Temperature | Anti-Mite Bed Vacuum Cleaner",
+    "slug": "jimmy-bx7-pro",
+    "category": "bed-vacuum",
+    "price": 7990,
+    "salePrice": null,
+    "savePct": null,
+    "currency": "ZAR",
+    "images": ["/images/products/jimmy-bx7-pro.jpg"],
+    "description": "The JIMMY BX7 Pro vacuum cleaner with a powerful 700W motor eliminates 99.99% of mites and bacteria thanks to UV-C and ultrasonic sterilization technology with 60℃ high temperature heating.",
+    "features": [
+      "Kills 99.99% bacteria and mites",
+      "700W powerful motor",
+      "UV-C sterilization technology",
+      "Ultrasound destroys mites' nerves",
+      "60℃ high temperature heating",
+      "HEPA filtration system"
+    ],
+    "specs": {
+      "power": "700W",
+      "uvSterilization": "UV-C",
+      "temperature": "60℃",
+      "filtration": "HEPA",
+      "weight": "2.2 kg"
+    },
+    "badges": ["New"],
+    "inStock": true,
+    "rating": 4.8,
+    "reviewCount": 0
+  },
+  {
+    "id": "jm-bx7promax",
+    "name": "JIMMY BX7 Pro Max | UV-C Anti-Mite Bed Vacuum Cleaner | Advanced Sterilization",
+    "slug": "jimmy-bx7-pro-max",
+    "category": "bed-vacuum",
+    "price": 9490,
+    "salePrice": null,
+    "savePct": null,
+    "currency": "ZAR",
+    "images": ["/images/products/jimmy-bx7-pro-max.jpg"],
+    "description": "The upgraded BX7 Pro Max with enhanced UV-C sterilization and advanced dust mite elimination. Designed for mattresses, pillows, sofas, and upholstered furniture.",
+    "features": [
+      "Enhanced UV-C anti-mite technology",
+      "Advanced sterilization system",
+      "Hot air drying function",
+      "Powerful suction for deep cleaning",
+      "Designed for mattresses and upholstery",
+      "HEPA filtration"
+    ],
+    "specs": {
+      "power": "700W",
+      "uvSterilization": "UV-C enhanced",
+      "temperature": "60℃+",
+      "filtration": "HEPA H13",
+      "weight": "2.3 kg"
+    },
+    "badges": ["New"],
+    "inStock": true,
+    "rating": 4.9,
+    "reviewCount": 0
+  },
+  {
+    "id": "jm-jv35",
+    "name": "JIMMY JV35 UV Anti-Mite Bed Vacuum Cleaner | Compact & Powerful",
+    "slug": "jimmy-jv35",
+    "category": "bed-vacuum",
+    "price": 5990,
+    "salePrice": null,
+    "savePct": null,
+    "currency": "ZAR",
+    "images": ["/images/products/jimmy-jv35.jpg"],
+    "description": "Compact UV anti-mite bed vacuum cleaner for eliminating dust mites and allergens from mattresses, pillows, and soft furnishings. Lightweight and easy to use.",
+    "features": [
+      "UV sterilization kills 99.9% mites",
+      "Compact lightweight design",
+      "High-frequency vibration pad",
+      "HEPA filtration system",
+      "Powerful suction for deep cleaning",
+      "Easy-empty dustbin"
+    ],
+    "specs": {
+      "power": "450W",
+      "uvSterilization": "UV-C",
+      "filtration": "HEPA",
+      "weight": "1.6 kg",
+      "dustbin": "0.4L"
+    },
+    "badges": ["New"],
+    "inStock": true,
+    "rating": 4.9,
+    "reviewCount": 0
+  },
+  {
+    "id": "jm-bx8",
+    "name": "JIMMY BX8 Anti-Mite Bed Vacuum Cleaner | Eliminate Dust Mites & Allergens",
+    "slug": "jimmy-bx8",
+    "category": "bed-vacuum",
+    "price": 6490,
+    "salePrice": null,
+    "savePct": null,
+    "currency": "ZAR",
+    "images": ["/images/products/jimmy-bx8.jpg"],
+    "description": "Advanced bed vacuum cleaner designed to eliminate dust mites and allergens effortlessly. Features powerful suction combined with UV sterilization for a cleaner, healthier sleep environment.",
+    "features": [
+      "Eliminates dust mites and allergens",
+      "UV sterilization technology",
+      "High-frequency vibration",
+      "HEPA filtration",
+      "Compact ergonomic design",
+      "Large dustbin capacity"
+    ],
+    "specs": {
+      "power": "500W",
+      "uvSterilization": "UV-C",
+      "filtration": "HEPA",
+      "weight": "1.8 kg",
+      "dustbin": "0.45L"
+    },
+    "badges": ["New"],
+    "inStock": true,
+    "rating": 4.7,
+    "reviewCount": 0
+  },
+  {
+    "id": "jm-bd7pro",
+    "name": "JIMMY BD7 Pro Cordless Bed Vacuum Cleaner | Wireless UV Anti-Mite",
+    "slug": "jimmy-bd7-pro",
+    "category": "bed-vacuum",
+    "price": 8990,
+    "salePrice": null,
+    "savePct": null,
+    "currency": "ZAR",
+    "images": ["/images/products/jimmy-bd7-pro.jpg"],
+    "description": "Cordless bed vacuum cleaner with wireless UV anti-mite technology. Freedom to clean anywhere without cord restrictions. Advanced suction and sterilization in a portable design.",
+    "features": [
+      "Cordless wireless design",
+      "UV-C anti-mite sterilization",
+      "Powerful suction motor",
+      "Rechargeable battery",
+      "HEPA H13 filtration",
+      "Lightweight portable design"
+    ],
+    "specs": {
+      "power": "450W",
+      "battery": "30 min runtime",
+      "uvSterilization": "UV-C",
+      "filtration": "HEPA H13",
+      "weight": "1.5 kg"
+    },
+    "badges": ["New"],
+    "inStock": true,
+    "rating": 4.8,
+    "reviewCount": 0
+  },
+  {
     "id": "jm-af3",
-    "name": "JIMMY AF3 Multi-Functional Air Fryer | Pan Fry 2-in-1 | 1100W | 4L",
+    "name": "JIMMY AF3 Multi-Functional Air Fryer | Pan Fry 2-in-1 | 1100W | 4L VISIBLE FRYING POT | HD TOUCH DISPLAY",
     "slug": "jimmy-af3-air-fryer",
     "category": "kitchen",
     "price": 9990,
@@ -71,24 +258,181 @@
     "savePct": null,
     "currency": "ZAR",
     "images": ["/images/products/jimmy-af3-air-fryer.webp"],
-    "description": "2-in-1 air fryer and pan fry with 1100W power. 4L capacity perfect for families.",
+    "description": "2-in-1 air fryer and pan fry with 1100W power. 4L visible glass frying pot with HD touch display. Perfect for families who want healthier cooking.",
     "features": [
       "2-in-1 Air Fry & Pan Fry",
       "1100W powerful heating",
-      "4L large capacity",
+      "4L large capacity visible glass pot",
       "360° hot air circulation",
-      "Touch control panel",
+      "HD touch control display",
       "Non-stick coating"
     ],
     "specs": {
       "power": "1100W",
       "capacity": "4L",
       "temperature": "80–200°C",
-      "timer": "60 min max"
+      "timer": "60 min max",
+      "display": "HD Touch"
     },
     "badges": ["New"],
     "inStock": true,
     "rating": 4.7,
+    "reviewCount": 0
+  },
+  {
+    "id": "jm-b53",
+    "name": "JIMMY B53 1000W Smart High Speed Blender | LED Display | 25,000 RPM | 1.5L BPA Free",
+    "slug": "jimmy-b53-blender",
+    "category": "kitchen",
+    "price": 9290,
+    "salePrice": null,
+    "savePct": null,
+    "currency": "ZAR",
+    "images": ["/images/products/jimmy-b53-blender.jpg"],
+    "description": "With a torque engine of 25,000 RPM and stainless steel 3D blades, it allows you to chop and mix all your favorite ingredients. Self-cleaning technology and low noise operation.",
+    "features": [
+      "1000W high power motor",
+      "25,000 RPM high speed",
+      "1.5L BPA-free cup",
+      "Stainless steel 3D blades",
+      "LED display with smart controls",
+      "Self-cleaning technology",
+      "Low noise operation <80dB"
+    ],
+    "specs": {
+      "power": "1000W",
+      "speed": "25,000 RPM",
+      "capacity": "1.5L",
+      "material": "BPA-free Tritan",
+      "noise": "<80dB"
+    },
+    "badges": ["New"],
+    "inStock": true,
+    "rating": 4.6,
+    "reviewCount": 0
+  },
+  {
+    "id": "jm-hf9",
+    "name": "JIMMY HF9 Hair 3-in-1 Multi-Styler | Dry | Curl | Volumize | 110,000 RPM",
+    "slug": "jimmy-hf9-hair-multi-styler",
+    "category": "hair-care",
+    "price": 10990,
+    "salePrice": 14490,
+    "savePct": 24,
+    "currency": "ZAR",
+    "images": ["/images/products/jimmy-hf9-hair-styler.jpg"],
+    "description": "The JIMMY HF9 is a 3-in-1 multi-hair styler that offers fast drying, curling, and volumizing. Equipped with a powerful 110,000 RPM digital motor for salon-quality results at home.",
+    "features": [
+      "3-in-1: Dry, Curl, and Volumize",
+      "110,000 RPM digital motor",
+      "Lightweight ergonomic design",
+      "Low noise operation",
+      "Multiple heat settings",
+      "Ionic technology for frizz control"
+    ],
+    "specs": {
+      "motor": "110,000 RPM",
+      "power": "1200W",
+      "weight": "385g",
+      "noise": "<78dB",
+      "ionicTech": "Yes"
+    },
+    "badges": ["New", "On Sale"],
+    "inStock": true,
+    "rating": 4.8,
+    "reviewCount": 0
+  },
+  {
+    "id": "jm-f8",
+    "name": "JIMMY F8 Nano Ultrasonic Hair Dryer | 1600W | LED Display | 110,000 RPM | Low Noise",
+    "slug": "jimmy-f8-hair-dryer",
+    "category": "hair-care",
+    "price": 11490,
+    "salePrice": 14490,
+    "savePct": 21,
+    "currency": "ZAR",
+    "images": ["/images/products/jimmy-f8-hair-dryer.jpg"],
+    "description": "The Jimmy F8 Nano Ultrasonic Hair Dryer offers an ergonomic, stylish and luxurious design. 1600W power with 110,000 RPM motor, LED display, and straighten & curl accessories included.",
+    "features": [
+      "1600W powerful drying",
+      "110,000 RPM digital motor",
+      "LED display with temperature control",
+      "Nano ultrasonic moisture technology",
+      "Straighten & curl accessories included",
+      "Low noise operation"
+    ],
+    "specs": {
+      "power": "1600W",
+      "motor": "110,000 RPM",
+      "weight": "420g",
+      "display": "LED",
+      "noise": "<76dB"
+    },
+    "badges": ["New", "On Sale"],
+    "inStock": true,
+    "rating": 4.7,
+    "reviewCount": 0
+  },
+  {
+    "id": "jm-r9",
+    "name": "JIMMY R9 Countertop Reverse Osmosis Water Purifier | 4-Stage Filtration",
+    "slug": "jimmy-r9-water-purifier",
+    "category": "water-purifier",
+    "price": 11990,
+    "salePrice": null,
+    "savePct": null,
+    "currency": "ZAR",
+    "images": ["/images/products/jimmy-r9-water-purifier.jpg"],
+    "description": "Countertop reverse osmosis water purifier with 4-stage filtration for clean, pure drinking water. No installation required – simply place on your countertop and connect to any tap.",
+    "features": [
+      "4-stage reverse osmosis filtration",
+      "No installation required",
+      "Countertop compact design",
+      "TDS real-time water quality display",
+      "3-second instant hot water",
+      "Removes 99.9% of contaminants"
+    ],
+    "specs": {
+      "filtration": "4-stage RO",
+      "capacity": "1.2L tank",
+      "flowRate": "0.5L/min",
+      "tdsRemoval": "99.9%",
+      "power": "750W"
+    },
+    "badges": ["New"],
+    "inStock": true,
+    "rating": 4.9,
+    "reviewCount": 0
+  },
+  {
+    "id": "jm-jv9proaqua",
+    "name": "JIMMY JV9 Pro Aqua Cordless Vacuum Cleaner | Vacuum, Mop & Shine in One Go",
+    "slug": "jimmy-jv9-pro-aqua",
+    "category": "wet-dry-vacuum",
+    "price": 24990,
+    "salePrice": 29990,
+    "savePct": 17,
+    "currency": "ZAR",
+    "images": ["/images/products/jimmy-jv9-pro-aqua.jpg"],
+    "description": "Vacuum, mop, and shine in one go. The JV9 Pro Aqua combines powerful cordless vacuuming with simultaneous mopping for a complete clean in one pass.",
+    "features": [
+      "3-in-1: Vacuum, Mop, and Shine",
+      "Powerful cordless suction",
+      "Simultaneous mopping system",
+      "Self-cleaning function",
+      "Long battery life",
+      "LED display"
+    ],
+    "specs": {
+      "suction": "200AW",
+      "battery": "60 min runtime",
+      "weight": "4.5 kg",
+      "tank": "0.55L clean / 0.45L dirty",
+      "power": "600W"
+    },
+    "badges": ["New", "On Sale"],
+    "inStock": true,
+    "rating": 4.9,
     "reviewCount": 0
   },
   {
@@ -101,7 +445,7 @@
     "savePct": null,
     "currency": "ZAR",
     "images": ["/images/products/jimmy-mop-kit.webp"],
-    "description": "Compatible water tank with mopping kit for JV53, JV83, H9FLEX, and H10 Pro models.",
+    "description": "Compatible water tank with mopping kit for JV53, JV83, H9FLEX, and H10 Pro models. Adds mopping capability to your existing JIMMY vacuum cleaner.",
     "features": [
       "Compatible with JV53, JV83, H9FLEX, H10 Pro",
       "Easy-attach water tank",
