@@ -21,17 +21,21 @@ interface NavItem {
 
 const navLinks: NavItem[] = [
   { label: "Home", to: "/", hasDropdown: false },
+  { label: "Shop", to: "/shop", hasDropdown: false },
   {
     label: "Best Sellers",
     to: "/best-sellers",
     hasDropdown: true,
     children: [
-      { label: "Cordless Vacuums", to: "/category/stick-vacuum", desc: "Powerful stick vacuums" },
+      { label: "Stick Vacuum Cleaners", to: "/category/stick-vacuum", desc: "Powerful cordless vacuums" },
       { label: "Wet & Dry Vacuums", to: "/category/wet-dry-vacuum", desc: "Multi-surface cleaning" },
-      { label: "Bed Vacuums", to: "/category/bed-vacuum", desc: "Anti-mite cleaning" },
-      { label: "Kitchen Appliances", to: "/category/kitchen", desc: "Air fryers & more" },
+      { label: "Bed Vacuum Cleaners", to: "/category/bed-vacuum", desc: "Anti-mite cleaning" },
+      { label: "Kitchen Appliances", to: "/category/kitchen", desc: "Air fryers & blenders" },
+      { label: "Hair Care", to: "/category/hair-care", desc: "Multi-stylers & dryers" },
+      { label: "Water Purifiers", to: "/category/water-purifier", desc: "Clean water solutions" },
     ],
   },
+  { label: "New Arrivals", to: "/shop", hasDropdown: false },
   { label: "Parts & Accessories", to: "/category/parts-accessories", hasDropdown: false },
   {
     label: "Support",
@@ -42,16 +46,6 @@ const navLinks: NavItem[] = [
       { label: "Warranty", to: "/support#warranty" },
       { label: "Contact Us", to: "/support#contact" },
       { label: "Shipping Info", to: "/support#shipping" },
-    ],
-  },
-  {
-    label: "Deals",
-    to: "/deals",
-    hasDropdown: true,
-    children: [
-      { label: "Current Promotions", to: "/deals" },
-      { label: "Bundle Offers", to: "/deals#bundles" },
-      { label: "Clearance", to: "/deals#clearance" },
     ],
   },
   { label: "Blog", to: "/blog", hasDropdown: false },
