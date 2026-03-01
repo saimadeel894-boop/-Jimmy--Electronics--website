@@ -80,10 +80,18 @@ const Index = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
-              className="relative flex min-h-[380px] flex-col justify-start overflow-hidden md:min-h-[500px]"
+              className="relative overflow-hidden md:min-h-[500px]"
+              style={{ backgroundColor: "hsl(var(--jimmy-light-blue))" }}
             >
-              <img src="/images/products/jimmy-jv83-pro.jpg" alt="JIMMY JV83 PRO" className="absolute inset-0 h-full w-full object-cover" />
-              <div className="relative z-10 flex flex-1 flex-col items-center justify-center text-center px-6 pt-10">
+              {/* Image covers top portion */}
+              <img
+                src="/images/products/jimmy-jv83-pro.jpg"
+                alt="JIMMY JV83 PRO"
+                className="w-full object-cover"
+                style={{ height: "280px" }}
+              />
+              {/* Text on light blue bottom */}
+              <div className="flex flex-col items-center justify-center text-center px-6 py-8 md:py-10">
                 <p className="mb-1 text-sm font-semibold tracking-wide text-foreground">JIMMY JV83 PRO</p>
                 <h2 className="mb-1 text-3xl font-extrabold text-foreground md:text-[38px] md:leading-tight">From {formatZAR(4990)}</h2>
                 <p className="mb-5 text-sm text-foreground/70">Designed for modern homes, pets,<br />and everyday mess</p>
@@ -98,9 +106,9 @@ const Index = () => {
 
       {/* ── Award Banner ───────────── */}
       <section className="bg-jimmy-light-blue py-8">
-        <div className="container-jimmy flex flex-col items-center gap-3">
+        <div className="container-jimmy flex flex-col items-center gap-4">
           <img src="/images/awards-strip.png" alt="Award logos" className="h-auto w-full max-w-[600px] object-contain" loading="lazy" />
-          <h2 className="text-lg font-bold text-primary text-center md:text-xl">
+          <h2 className="text-xl font-bold text-primary text-center md:text-2xl">
             Award-winning home technology delivered across Africa
           </h2>
         </div>

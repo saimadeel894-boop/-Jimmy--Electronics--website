@@ -21,10 +21,9 @@ interface NavItem {
 
 const navLinks: NavItem[] = [
   { label: "Home", to: "/", hasDropdown: false },
-  { label: "Shop", to: "/shop", hasDropdown: false },
   {
     label: "Best Sellers",
-    to: "/best-sellers",
+    to: "/shop",
     hasDropdown: true,
     children: [
       { label: "Stick Vacuum Cleaners", to: "/category/stick-vacuum", desc: "Powerful cordless vacuums" },
@@ -35,7 +34,6 @@ const navLinks: NavItem[] = [
       { label: "Water Purifiers", to: "/category/water-purifier", desc: "Clean water solutions" },
     ],
   },
-  { label: "New Arrivals", to: "/shop", hasDropdown: false },
   { label: "Parts & Accessories", to: "/category/parts-accessories", hasDropdown: false },
   {
     label: "Support",
@@ -46,6 +44,15 @@ const navLinks: NavItem[] = [
       { label: "Warranty", to: "/support#warranty" },
       { label: "Contact Us", to: "/support#contact" },
       { label: "Shipping Info", to: "/support#shipping" },
+    ],
+  },
+  {
+    label: "Deals",
+    to: "/deals",
+    hasDropdown: true,
+    children: [
+      { label: "Current Sales", to: "/deals", desc: "Products on sale now" },
+      { label: "Bundles", to: "/deals", desc: "Save with bundles" },
     ],
   },
   { label: "Blog", to: "/blog", hasDropdown: false },
