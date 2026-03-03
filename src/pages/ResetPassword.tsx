@@ -54,7 +54,7 @@ const ResetPassword = () => {
         <div className="w-full max-w-md rounded-md bg-background p-8 shadow-strong">
           {success ? (
             <div className="text-center space-y-4">
-              <CheckCircle className="mx-auto h-12 w-12 text-green-600" />
+              <CheckCircle className="mx-auto h-12 w-12 text-primary" />
               <h1 className="text-2xl font-bold text-foreground">Password Updated</h1>
               <p className="text-sm text-muted-foreground">Redirecting you to the homepage…</p>
             </div>
