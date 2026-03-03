@@ -13,6 +13,7 @@ import Support from "./pages/Support";
 import Blog from "./pages/Blog";
 import Deals from "./pages/Deals";
 import Auth from "./pages/Auth";
+import ResetPassword from "./pages/ResetPassword";
 import Profile from "./pages/Profile";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
@@ -38,6 +39,7 @@ const App = () => (
               <Route path="/deals" element={<Deals />} />
               <Route path="/best-sellers" element={<Shop />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/order-confirmation/:orderId" element={<OrderConfirmation />} />
