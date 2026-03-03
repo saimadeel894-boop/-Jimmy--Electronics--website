@@ -1,6 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-const ProductCardSkeleton = () => (
+function ProductCardSkeleton() {
+  return (
   <div className="overflow-hidden rounded-md bg-background shadow-soft">
     <Skeleton className="aspect-square w-full" />
     <div className="p-4 space-y-2">
