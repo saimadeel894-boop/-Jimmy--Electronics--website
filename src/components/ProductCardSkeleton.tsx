@@ -42,6 +42,7 @@ export function ProductDetailSkeleton() {
       <Skeleton className="mt-4 h-12 w-full" />
     </div>
   </div>
-);
+  );
+}
 
 export default ProductCardSkeleton;
