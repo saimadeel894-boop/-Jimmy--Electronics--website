@@ -1,7 +1,7 @@
 import MainLayout from "@/components/layout/MainLayout";
 import { useParams, Link } from "react-router-dom";
 import { formatZAR } from "@/lib/format";
-import products from "@/data/products.json";
+import { useProductsByCategory } from "@/hooks/use-products";
 
 const categoryNames: Record<string, string> = {
   "stick-vacuum": "Stick Vacuum Cleaners",
@@ -17,14 +17,16 @@ const categoryNames: Record<string, string> = {
 const Category = () => {
   const { slug } = useParams<{ slug: string }>();
   const name = categoryNames[slug || ""] || slug || "Products";
-  const filtered = products.filter((p) => p.category === slug);
+  const { data: filtered = [], isLoading } = useProductsByCategory(slug);
 
   return (
     <MainLayout>
       <section className="bg-secondary py-8">
         <div className="container-jimmy">
           <h1 className="text-2xl font-bold text-foreground md:text-3xl">{name}</h1>
-          <p className="mt-1 text-sm text-muted-foreground">{filtered.length} product{filtered.length !== 1 ? "s" : ""} found</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {isLoading ? "Loading…" : `${filtered.length} product${filtered.length !== 1 ? "s" : ""} found`}
+          </p>
         </div>
       </section>
 
@@ -61,12 +63,12 @@ const Category = () => {
                 </Link>
               ))}
             </div>
-          ) : (
+          ) : !isLoading ? (
             <div className="py-20 text-center">
               <p className="text-lg font-semibold text-foreground">No products in this category yet</p>
               <Link to="/shop" className="mt-2 inline-block text-sm font-semibold text-primary hover:underline">Browse all products</Link>
             </div>
-          )}
+          ) : null}
         </div>
       </section>
     </MainLayout>

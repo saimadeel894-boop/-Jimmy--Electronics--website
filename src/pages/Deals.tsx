@@ -1,9 +1,10 @@
 import MainLayout from "@/components/layout/MainLayout";
 import { Link } from "react-router-dom";
 import { formatZAR } from "@/lib/format";
-import products from "@/data/products.json";
+import { useProducts } from "@/hooks/use-products";
 
 const Deals = () => {
+  const { data: products = [], isLoading } = useProducts();
   const dealsProducts = products.filter((p) => p.salePrice || p.savePct);
 
   return (
@@ -17,7 +18,11 @@ const Deals = () => {
 
       <section className="section-padding-md">
         <div className="container-jimmy">
-          {dealsProducts.length > 0 ? (
+          {isLoading ? (
+            <div className="py-20 text-center">
+              <p className="text-sm text-muted-foreground">Loading deals…</p>
+            </div>
+          ) : dealsProducts.length > 0 ? (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {dealsProducts.map((product) => (
                 <Link
