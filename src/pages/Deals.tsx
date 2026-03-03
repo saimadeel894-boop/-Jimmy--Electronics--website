@@ -2,6 +2,7 @@ import MainLayout from "@/components/layout/MainLayout";
 import { Link } from "react-router-dom";
 import { formatZAR } from "@/lib/format";
 import { useProducts } from "@/hooks/use-products";
+import { ProductGridSkeleton } from "@/components/ProductCardSkeleton";
 
 const Deals = () => {
   const { data: products = [], isLoading } = useProducts();
@@ -19,9 +20,7 @@ const Deals = () => {
       <section className="section-padding-md">
         <div className="container-jimmy">
           {isLoading ? (
-            <div className="py-20 text-center">
-              <p className="text-sm text-muted-foreground">Loading deals…</p>
-            </div>
+            <ProductGridSkeleton count={4} />
           ) : dealsProducts.length > 0 ? (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {dealsProducts.map((product) => (

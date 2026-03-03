@@ -5,6 +5,7 @@ import { ShoppingCart, Truck, ShieldCheck, RotateCcw, ChevronRight } from "lucid
 import { formatZAR } from "@/lib/format";
 import { toast } from "@/hooks/use-toast";
 import { useProductBySlug, useReviewsByProduct } from "@/hooks/use-products";
+import { ProductDetailSkeleton } from "@/components/ProductCardSkeleton";
 
 const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -14,8 +15,8 @@ const ProductDetail = () => {
   if (isLoading) {
     return (
       <MainLayout>
-        <div className="container-jimmy section-padding-lg text-center">
-          <p className="text-sm text-muted-foreground">Loading product…</p>
+        <div className="container-jimmy section-padding-md">
+          <ProductDetailSkeleton />
         </div>
       </MainLayout>
     );
