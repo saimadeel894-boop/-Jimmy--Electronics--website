@@ -32,9 +32,9 @@ const socialLinks = [
   { icon: Youtube, href: "#", label: "YouTube" },
 ];
 
-const Footer = () => {
+const Footer = forwardRef<HTMLElement>(function Footer(_props, ref) {
   return (
-    <footer className="border-t bg-background text-foreground">
+    <footer ref={ref} className="border-t bg-background text-foreground">
       {/* Newsletter */}
       <div className="border-b py-12">
         <div className="container-jimmy text-center">
