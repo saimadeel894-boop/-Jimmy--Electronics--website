@@ -89,6 +89,12 @@ const Header = () => {
                   {user.email}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/profile" className="gap-2">
+                    <User className="h-4 w-4" />
+                    My Profile
+                  </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={signOut} className="gap-2 text-destructive">
                   <LogOut className="h-4 w-4" />
                   Sign Out
