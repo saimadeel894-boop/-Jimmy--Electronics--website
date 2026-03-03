@@ -36,11 +36,10 @@ const ProductDetail = () => {
     );
   }
 
+  const { addItem } = useCart();
+
   const handleAddToCart = () => {
-    toast({
-      title: "Added to Cart",
-      description: `${product.name} has been added to your cart.`,
-    });
+    addItem(product.id);
   };
 
   return (
