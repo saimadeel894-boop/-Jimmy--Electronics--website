@@ -106,8 +106,11 @@ const CartDrawer = () => {
                 <span className="text-sm font-semibold">Subtotal</span>
                 <span className="text-lg font-bold text-primary">{formatZAR(subtotal)}</span>
               </div>
-              <Button className="w-full rounded-sm bg-accent text-accent-foreground font-bold hover:bg-accent/90">
-                Proceed to Checkout
+              <Button
+                asChild
+                className="w-full rounded-sm bg-accent text-accent-foreground font-bold hover:bg-accent/90"
+              >
+                <Link to="/checkout" onClick={() => setOpen(false)}>Proceed to Checkout</Link>
               </Button>
               <Button
                 variant="outline"
