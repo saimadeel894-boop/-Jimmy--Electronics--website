@@ -13,6 +13,7 @@ import Support from "./pages/Support";
 import Blog from "./pages/Blog";
 import Deals from "./pages/Deals";
 import Auth from "./pages/Auth";
+import ResetPassword from "./pages/ResetPassword";
 import Profile from "./pages/Profile";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
