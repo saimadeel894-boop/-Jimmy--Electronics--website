@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useMemo } from "react";
 import { formatZAR } from "@/lib/format";
 import { useProducts, useCategories } from "@/hooks/use-products";
+import { ProductGridSkeleton } from "@/components/ProductCardSkeleton";
 
 type SortOption = "default" | "price-asc" | "price-desc" | "name";
 
@@ -78,9 +79,7 @@ const Shop = () => {
           </div>
 
           {isLoading ? (
-            <div className="py-20 text-center">
-              <p className="text-sm text-muted-foreground">Loading products…</p>
-            </div>
+            <ProductGridSkeleton count={8} />
           ) : (
             <>
               {/* Product Grid */}

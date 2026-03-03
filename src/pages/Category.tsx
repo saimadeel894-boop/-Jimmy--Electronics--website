@@ -2,6 +2,7 @@ import MainLayout from "@/components/layout/MainLayout";
 import { useParams, Link } from "react-router-dom";
 import { formatZAR } from "@/lib/format";
 import { useProductsByCategory } from "@/hooks/use-products";
+import { ProductGridSkeleton } from "@/components/ProductCardSkeleton";
 
 const categoryNames: Record<string, string> = {
   "stick-vacuum": "Stick Vacuum Cleaners",
@@ -32,7 +33,9 @@ const Category = () => {
 
       <section className="section-padding-md">
         <div className="container-jimmy">
-          {filtered.length > 0 ? (
+          {isLoading ? (
+            <ProductGridSkeleton count={4} />
+          ) : filtered.length > 0 ? (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {filtered.map((product) => (
                 <Link
@@ -63,12 +66,12 @@ const Category = () => {
                 </Link>
               ))}
             </div>
-          ) : !isLoading ? (
+          ) : (
             <div className="py-20 text-center">
               <p className="text-lg font-semibold text-foreground">No products in this category yet</p>
               <Link to="/shop" className="mt-2 inline-block text-sm font-semibold text-primary hover:underline">Browse all products</Link>
             </div>
-          ) : null}
+          )}
         </div>
       </section>
     </MainLayout>

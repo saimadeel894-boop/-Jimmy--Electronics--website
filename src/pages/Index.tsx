@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { formatZAR } from "@/lib/format";
 import { useProducts, Product } from "@/hooks/use-products";
+import { ProductGridSkeleton } from "@/components/ProductCardSkeleton";
 
 const bestSellerSlugs = ["jimmy-water-tank-mopping-kit", "jimmy-h8-flex", "jimmy-af3-air-fryer", "jimmy-pw11-pro-max"];
 
@@ -38,7 +39,7 @@ const trustBadges = [
 ];
 
 const Index = () => {
-  const { data: allProducts = [] } = useProducts();
+  const { data: allProducts = [], isLoading } = useProducts();
   const bestSellers = bestSellerSlugs
     .map(s => allProducts.find(p => p.slug === s))
     .filter(Boolean) as Product[];
@@ -172,37 +173,41 @@ const Index = () => {
               See All Products <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {bestSellers.map((product) => (
-              <Link key={product.id} to={`/shop/${product.slug}`} className="group overflow-hidden rounded-md bg-background shadow-soft transition-all hover:shadow-strong hover:-translate-y-1">
-                <div className="relative aspect-square overflow-hidden bg-secondary">
-                  <div className="absolute left-2 top-2 z-10 flex flex-col gap-1">
-                    {product.badges.includes("On Sale") && (
-                      <span className="rounded-sm bg-destructive px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-destructive-foreground">On Sale</span>
-                    )}
-                    {product.savePct && (
-                      <span className="rounded-sm bg-accent px-2 py-0.5 text-[10px] font-bold text-accent-foreground">Save {product.savePct}%</span>
-                    )}
+          {isLoading ? (
+            <ProductGridSkeleton count={4} />
+          ) : (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {bestSellers.map((product) => (
+                <Link key={product.id} to={`/shop/${product.slug}`} className="group overflow-hidden rounded-md bg-background shadow-soft transition-all hover:shadow-strong hover:-translate-y-1">
+                  <div className="relative aspect-square overflow-hidden bg-secondary">
+                    <div className="absolute left-2 top-2 z-10 flex flex-col gap-1">
+                      {product.badges.includes("On Sale") && (
+                        <span className="rounded-sm bg-destructive px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-destructive-foreground">On Sale</span>
+                      )}
+                      {product.savePct && (
+                        <span className="rounded-sm bg-accent px-2 py-0.5 text-[10px] font-bold text-accent-foreground">Save {product.savePct}%</span>
+                      )}
+                    </div>
+                    <img src={product.images[0]} alt={product.name} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
                   </div>
-                  <img src={product.images[0]} alt={product.name} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
-                </div>
-                <div className="p-4">
-                  <div className="flex items-baseline gap-2 flex-wrap mb-2">
-                    {product.salePrice ? (
-                      <>
-                        <span className="text-xs text-muted-foreground line-through">{formatZAR(product.salePrice)}</span>
+                  <div className="p-4">
+                    <div className="flex items-baseline gap-2 flex-wrap mb-2">
+                      {product.salePrice ? (
+                        <>
+                          <span className="text-xs text-muted-foreground line-through">{formatZAR(product.salePrice)}</span>
+                          <span className="text-base font-bold text-foreground">{formatZAR(product.price)}</span>
+                        </>
+                      ) : (
                         <span className="text-base font-bold text-foreground">{formatZAR(product.price)}</span>
-                      </>
-                    ) : (
-                      <span className="text-base font-bold text-foreground">{formatZAR(product.price)}</span>
-                    )}
+                      )}
+                    </div>
+                    <h3 className="text-xs font-medium leading-snug text-foreground line-clamp-2">{product.name}</h3>
+                    <p className="mt-1 text-xs text-muted-foreground">{product.reviewCount} reviews</p>
                   </div>
-                  <h3 className="text-xs font-medium leading-snug text-foreground line-clamp-2">{product.name}</h3>
-                  <p className="mt-1 text-xs text-muted-foreground">{product.reviewCount} reviews</p>
-                </div>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
