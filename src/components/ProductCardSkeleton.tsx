@@ -1,6 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-const ProductCardSkeleton = () => (
+function ProductCardSkeleton() {
+  return (
   <div className="overflow-hidden rounded-md bg-background shadow-soft">
     <Skeleton className="aspect-square w-full" />
     <div className="p-4 space-y-2">
@@ -10,17 +11,21 @@ const ProductCardSkeleton = () => (
       <Skeleton className="h-3 w-1/4" />
     </div>
   </div>
-);
+  );
+}
 
-export const ProductGridSkeleton = ({ count = 4 }: { count?: number }) => (
+export function ProductGridSkeleton({ count = 4 }: { count?: number }) {
+  return (
   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
     {Array.from({ length: count }).map((_, i) => (
       <ProductCardSkeleton key={i} />
     ))}
   </div>
-);
+  );
+}
 
-export const ProductDetailSkeleton = () => (
+export function ProductDetailSkeleton() {
+  return (
   <div className="grid gap-8 md:grid-cols-2">
     <Skeleton className="aspect-square w-full rounded-md" />
     <div className="flex flex-col space-y-4">
@@ -37,6 +42,7 @@ export const ProductDetailSkeleton = () => (
       <Skeleton className="mt-4 h-12 w-full" />
     </div>
   </div>
-);
+  );
+}
 
 export default ProductCardSkeleton;

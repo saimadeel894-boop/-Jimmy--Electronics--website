@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "@/components/layout/MainLayout";
 import { useAuth } from "@/contexts/AuthContext";
@@ -31,13 +31,14 @@ const Checkout = () => {
   const [placing, setPlacing] = useState(false);
 
   // Pre-fill from profile when it loads
-  useState(() => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
     if (profile) {
       setShippingName(profile.name || "");
       setShippingPhone(profile.phone || "");
       setShippingAddress(profile.address || "");
     }
-  });
+  }, [profile]);
 
   if (authLoading || cartLoading) {
     return (
@@ -200,7 +201,7 @@ const Checkout = () => {
                       <p className="text-xs text-muted-foreground">Qty: {item.quantity}</p>
                     </div>
                     <span className="text-sm font-bold shrink-0">
-                      {formatZAR((item.product?.price ?? 0) * item.quantity)}
+                      {formatZAR((item.product?.sale_price ?? item.product?.price ?? 0) * item.quantity)}
                     </span>
                   </div>
                 ))}
