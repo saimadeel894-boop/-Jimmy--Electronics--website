@@ -63,9 +63,9 @@ const WHATSAPP_MSG = encodeURIComponent("Hi, I need help with a Jimmy Africa pro
 
 const DropdownMenu = ({ items }: { items: NonNullable<NavItem["children"]> }) => (
   <div className="absolute left-0 top-full z-overlay min-w-[220px] rounded-md border bg-popover py-2 shadow-strong opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-150">
-    {items.map((item) => (
+    {items.map((item, idx) => (
       <Link
-        key={item.to}
+        key={`${item.to}-${idx}`}
         to={item.to}
         className="block px-4 py-2.5 text-sm text-popover-foreground hover:bg-accent/10 hover:text-primary transition-colors"
       >
