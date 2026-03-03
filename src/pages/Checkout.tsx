@@ -31,13 +31,14 @@ const Checkout = () => {
   const [placing, setPlacing] = useState(false);
 
   // Pre-fill from profile when it loads
-  useState(() => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
     if (profile) {
       setShippingName(profile.name || "");
       setShippingPhone(profile.phone || "");
       setShippingAddress(profile.address || "");
     }
-  });
+  }, [profile]);
 
   if (authLoading || cartLoading) {
     return (
