@@ -4,11 +4,9 @@ import { ArrowRight, Truck, RotateCcw, Headphones, ShieldCheck } from "lucide-re
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { formatZAR } from "@/lib/format";
-import products from "@/data/products.json";
+import { useProducts, Product } from "@/hooks/use-products";
 
-// Best sellers: same 4 as the reference homepage
 const bestSellerSlugs = ["jimmy-water-tank-mopping-kit", "jimmy-h8-flex", "jimmy-af3-air-fryer", "jimmy-pw11-pro-max"];
-const bestSellers = bestSellerSlugs.map(s => products.find(p => p.slug === s)!).filter(Boolean);
 
 const categories = [
   { label: "Bed\nVacuum Cleaner", slug: "bed-vacuum", image: "/images/categories/bed-vacuum.png" },
@@ -40,6 +38,11 @@ const trustBadges = [
 ];
 
 const Index = () => {
+  const { data: allProducts = [] } = useProducts();
+  const bestSellers = bestSellerSlugs
+    .map(s => allProducts.find(p => p.slug === s))
+    .filter(Boolean) as Product[];
+
   return (
     <MainLayout>
 
@@ -75,14 +78,13 @@ const Index = () => {
               </div>
             </motion.div>
 
-            {/* Right — Product image card (matches reference: image top ~40%, text below on light blue) */}
+            {/* Right — Product image card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
               className="relative flex min-h-[380px] flex-col overflow-hidden bg-jimmy-light-blue md:min-h-[500px]"
             >
-              {/* Background image covers top portion */}
               <div
                 className="w-full bg-cover bg-center bg-no-repeat"
                 style={{
@@ -91,7 +93,6 @@ const Index = () => {
                   minHeight: "180px",
                 }}
               />
-              {/* Text content on light blue */}
               <div className="flex flex-1 flex-col items-center justify-center text-center px-6 py-6">
                 <p className="mb-1 text-sm font-semibold tracking-wide text-foreground">JIMMY JV83 PRO</p>
                 <h2 className="mb-1 text-3xl font-extrabold text-foreground md:text-[38px] md:leading-tight">From {formatZAR(4990)}</h2>

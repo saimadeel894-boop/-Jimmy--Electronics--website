@@ -4,12 +4,22 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCart, Truck, ShieldCheck, RotateCcw, ChevronRight } from "lucide-react";
 import { formatZAR } from "@/lib/format";
 import { toast } from "@/hooks/use-toast";
-import products from "@/data/products.json";
-import reviews from "@/data/reviews.json";
+import { useProductBySlug, useReviewsByProduct } from "@/hooks/use-products";
 
 const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
-  const product = products.find((p) => p.slug === slug);
+  const { data: product, isLoading } = useProductBySlug(slug);
+  const { data: productReviews = [] } = useReviewsByProduct(product?.id);
+
+  if (isLoading) {
+    return (
+      <MainLayout>
+        <div className="container-jimmy section-padding-lg text-center">
+          <p className="text-sm text-muted-foreground">Loading product…</p>
+        </div>
+      </MainLayout>
+    );
+  }
 
   if (!product) {
     return (
@@ -24,8 +34,6 @@ const ProductDetail = () => {
       </MainLayout>
     );
   }
-
-  const productReviews = reviews.filter((r) => r.productId === product.id);
 
   const handleAddToCart = () => {
     toast({
@@ -155,7 +163,7 @@ const ProductDetail = () => {
             <div className="mt-16 border-t pt-10">
               <h2 className="mb-6 text-xl font-bold text-foreground">Customer Reviews</h2>
               <div className="grid gap-4 sm:grid-cols-2">
-                {productReviews.map((review) => (
+                {productReviews.map((review: any) => (
                   <div key={review.id} className="rounded-md border p-5">
                     <div className="flex items-center gap-2 mb-2">
                       <div className="flex text-accent">
@@ -169,7 +177,7 @@ const ProductDetail = () => {
                     </div>
                     <h4 className="text-sm font-bold text-foreground">{review.title}</h4>
                     <p className="mt-1 text-sm text-muted-foreground">{review.content}</p>
-                    <p className="mt-2 text-xs text-muted-foreground">{review.author} · {review.date}</p>
+                    <p className="mt-2 text-xs text-muted-foreground">{review.author} · {new Date(review.created_at).toLocaleDateString()}</p>
                   </div>
                 ))}
               </div>
