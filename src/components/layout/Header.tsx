@@ -1,13 +1,22 @@
-import { Search, MapPin, User } from "lucide-react";
+import { Search, MapPin, User, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/contexts/AuthContext";
 import CartDrawer from "./CartDrawer";
 import SearchOverlay from "./SearchOverlay";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const { user, profile, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 4);
@@ -62,14 +71,39 @@ const Header = () => {
               <p className="text-[10px] text-primary-foreground/70">Delivering to:</p>
               <p className="text-sm font-bold">South Africa</p>
             </div>
-            
           </button>
 
           {/* My Account */}
-          <button className="hidden items-center gap-2 text-primary-foreground/90 hover:text-primary-foreground md:flex shrink-0">
-            <User className="h-6 w-6 shrink-0" strokeWidth={1.5} />
-            <span className="text-sm font-semibold">My Account</span>
-          </button>
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="hidden items-center gap-2 text-primary-foreground/90 hover:text-primary-foreground md:flex shrink-0">
+                  <User className="h-6 w-6 shrink-0" strokeWidth={1.5} />
+                  <span className="text-sm font-semibold truncate max-w-[120px]">
+                    {profile?.name || user.email?.split("@")[0] || "Account"}
+                  </span>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem className="text-xs text-muted-foreground" disabled>
+                  {user.email}
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={signOut} className="gap-2 text-destructive">
+                  <LogOut className="h-4 w-4" />
+                  Sign Out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Link
+              to="/auth"
+              className="hidden items-center gap-2 text-primary-foreground/90 hover:text-primary-foreground md:flex shrink-0"
+            >
+              <User className="h-6 w-6 shrink-0" strokeWidth={1.5} />
+              <span className="text-sm font-semibold">My Account</span>
+            </Link>
+          )}
 
           {/* Cart Drawer */}
           <CartDrawer />

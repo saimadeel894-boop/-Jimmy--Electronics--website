@@ -3,8 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Truck, ShieldCheck, RotateCcw, ChevronRight } from "lucide-react";
 import { formatZAR } from "@/lib/format";
-import { toast } from "@/hooks/use-toast";
 import { useProductBySlug, useReviewsByProduct } from "@/hooks/use-products";
+import { useCart } from "@/contexts/CartContext";
 import { ProductDetailSkeleton } from "@/components/ProductCardSkeleton";
 
 const ProductDetail = () => {
@@ -36,11 +36,10 @@ const ProductDetail = () => {
     );
   }
 
+  const { addItem } = useCart();
+
   const handleAddToCart = () => {
-    toast({
-      title: "Added to Cart",
-      description: `${product.name} has been added to your cart.`,
-    });
+    addItem(product.id);
   };
 
   return (
