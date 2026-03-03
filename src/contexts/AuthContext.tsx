@@ -18,8 +18,8 @@ type AuthContextType = {
   loading: boolean;
   signUp: (email: string, password: string, name?: string) => Promise<{ error: Error | null }>;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
-  signInWithGoogle: () => Promise<void>;
-  signInWithApple: () => Promise<void>;
+  resetPassword: (email: string) => Promise<{ error: Error | null }>;
+  updatePassword: (password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
   updateProfile: (updates: Partial<Profile>) => Promise<{ error: Error | null }>;
 };
