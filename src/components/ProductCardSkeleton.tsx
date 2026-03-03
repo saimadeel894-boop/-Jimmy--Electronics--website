@@ -21,9 +21,11 @@ export function ProductGridSkeleton({ count = 4 }: { count?: number }) {
       <ProductCardSkeleton key={i} />
     ))}
   </div>
-);
+  );
+}
 
-export const ProductDetailSkeleton = () => (
+export function ProductDetailSkeleton() {
+  return (
   <div className="grid gap-8 md:grid-cols-2">
     <Skeleton className="aspect-square w-full rounded-md" />
     <div className="flex flex-col space-y-4">
