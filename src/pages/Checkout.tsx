@@ -116,8 +116,9 @@ const Checkout = () => {
     setPlacing(true);
     try {
       // Create order with pending payment status
-      // Build order payload — only include payment_status if Stripe is configured
-      const orderPayload: Record<string, unknown> = {
+      const { data: order, error: orderError } = await supabase
+        .from("orders")
+        .insert({
           user_id: user.id,
           shipping_name: shippingName.trim(),
           shipping_phone: shippingPhone.trim() || null,
@@ -129,7 +130,6 @@ const Checkout = () => {
           shipping_cost: shippingCost,
           total,
           notes: notes.trim() || null,
-          payment_status: "pending",
         })
         .select("id")
         .single();
