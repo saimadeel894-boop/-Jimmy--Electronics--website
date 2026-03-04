@@ -366,4 +366,6 @@ const Checkout = React.forwardRef<HTMLDivElement>((_, ref) => {
   );
 };
 
+Checkout.displayName = "Checkout";
+
 export default Checkout;
