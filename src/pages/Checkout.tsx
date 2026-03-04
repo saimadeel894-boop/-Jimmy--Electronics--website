@@ -362,8 +362,6 @@ const Checkout = () => {
       </section>
     </MainLayout>
   );
-});
-
-Checkout.displayName = "Checkout";
+};
 
 export default Checkout;
