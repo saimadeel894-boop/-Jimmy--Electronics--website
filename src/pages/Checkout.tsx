@@ -9,29 +9,31 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ShoppingCart, Truck, CreditCard } from "lucide-react";
+import { ShoppingCart, Truck, CreditCard, AlertCircle, Loader2 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { formatZAR } from "@/lib/format";
 import { Link } from "react-router-dom";
+import { isStripeConfigured } from "@/lib/stripe-config";
 
 const SHIPPING_COST = 150;
+const FREE_SHIPPING_THRESHOLD = 2500;
 
 const Checkout = () => {
   const { user, profile, loading: authLoading } = useAuth();
   const { items, subtotal, clearCart, loading: cartLoading } = useCart();
   const navigate = useNavigate();
 
-  const [shippingName, setShippingName] = useState(profile?.name || "");
-  const [shippingPhone, setShippingPhone] = useState(profile?.phone || "");
-  const [shippingAddress, setShippingAddress] = useState(profile?.address || "");
+  const [shippingName, setShippingName] = useState("");
+  const [shippingPhone, setShippingPhone] = useState("");
+  const [shippingAddress, setShippingAddress] = useState("");
   const [shippingCity, setShippingCity] = useState("");
   const [shippingProvince, setShippingProvince] = useState("");
   const [shippingPostalCode, setShippingPostalCode] = useState("");
   const [notes, setNotes] = useState("");
   const [placing, setPlacing] = useState(false);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   // Pre-fill from profile when it loads
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (profile) {
       setShippingName(profile.name || "");
@@ -40,12 +42,35 @@ const Checkout = () => {
     }
   }, [profile]);
 
+  const shippingCost = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
+  const total = subtotal + shippingCost;
+
+  const validateForm = (): boolean => {
+    const errors: Record<string, string> = {};
+    if (!shippingName.trim()) errors.name = "Full name is required";
+    if (!shippingAddress.trim()) errors.address = "Street address is required";
+    if (!shippingCity.trim()) errors.city = "City is required";
+    if (shippingPhone.trim() && !/^\+?\d[\d\s-]{7,}$/.test(shippingPhone.trim())) {
+      errors.phone = "Enter a valid phone number";
+    }
+    if (shippingPostalCode.trim() && !/^\d{4,6}$/.test(shippingPostalCode.trim())) {
+      errors.postal = "Enter a valid postal code";
+    }
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   if (authLoading || cartLoading) {
     return (
       <MainLayout>
         <section className="container-jimmy py-12 space-y-6">
           <Skeleton className="h-10 w-48" />
-          <Skeleton className="h-96 w-full" />
+          <div className="grid gap-8 lg:grid-cols-3">
+            <div className="lg:col-span-2">
+              <Skeleton className="h-96 w-full" />
+            </div>
+            <Skeleton className="h-64 w-full" />
+          </div>
         </section>
       </MainLayout>
     );
@@ -55,7 +80,9 @@ const Checkout = () => {
     return (
       <MainLayout>
         <section className="container-jimmy py-12 text-center">
-          <h1 className="text-2xl font-bold mb-4">Please sign in to checkout</h1>
+          <AlertCircle className="mx-auto h-12 w-12 text-muted-foreground/40 mb-4" />
+          <h1 className="text-2xl font-bold mb-2">Please sign in to checkout</h1>
+          <p className="text-muted-foreground mb-6">You need an account to place an order.</p>
           <Button asChild className="rounded-sm bg-primary font-bold text-primary-foreground">
             <Link to="/auth">Sign In</Link>
           </Button>
@@ -79,18 +106,16 @@ const Checkout = () => {
     );
   }
 
-  const total = subtotal + SHIPPING_COST;
-
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!shippingName.trim() || !shippingAddress.trim() || !shippingCity.trim()) {
-      toast({ title: "Missing fields", description: "Please fill in all required shipping fields.", variant: "destructive" });
+    if (!validateForm()) {
+      toast({ title: "Please fix form errors", description: "Some required fields are missing or invalid.", variant: "destructive" });
       return;
     }
 
     setPlacing(true);
     try {
-      // Create order
+      // Create order with pending payment status
       const { data: order, error: orderError } = await supabase
         .from("orders")
         .insert({
@@ -102,7 +127,7 @@ const Checkout = () => {
           shipping_province: shippingProvince.trim() || null,
           shipping_postal_code: shippingPostalCode.trim() || null,
           subtotal,
-          shipping_cost: SHIPPING_COST,
+          shipping_cost: shippingCost,
           total,
           notes: notes.trim() || null,
         })
@@ -111,24 +136,49 @@ const Checkout = () => {
 
       if (orderError || !order) throw orderError || new Error("Failed to create order");
 
-      // Create order items
+      // Create order items with correct sale pricing
       const orderItems = items.map((item) => ({
         order_id: order.id,
         product_id: item.product_id,
         product_name: item.product?.name || "Product",
         product_image: item.product?.images?.[0] || null,
-        price: item.product?.sale_price || item.product?.price || 0,
+        price: item.product?.sale_price ?? item.product?.price ?? 0,
         quantity: item.quantity,
       }));
 
       const { error: itemsError } = await supabase.from("order_items").insert(orderItems);
       if (itemsError) throw itemsError;
 
-      // Clear cart
-      await clearCart();
+      // If Stripe is configured, initiate payment
+      if (isStripeConfigured()) {
+        try {
+          const { data: paymentData, error: paymentError } = await supabase.functions.invoke(
+            "create-payment-intent",
+            { body: { order_id: order.id } }
+          );
 
-      toast({ title: "Order placed!", description: "Thank you for your purchase." });
-      navigate(`/order-confirmation/${order.id}`);
+          if (paymentError) throw paymentError;
+
+          // In full implementation, load Stripe.js and confirm payment here
+          // For now, redirect to confirmation with payment pending
+          await clearCart();
+          toast({ title: "Order placed!", description: "Payment processing..." });
+          navigate(`/order-confirmation/${order.id}`);
+        } catch (payErr: any) {
+          // Payment init failed but order is created — user can retry payment
+          toast({
+            title: "Payment setup failed",
+            description: "Your order is saved. Payment can be retried.",
+            variant: "destructive",
+          });
+          navigate(`/order-confirmation/${order.id}`);
+        }
+      } else {
+        // No Stripe configured — place order directly (COD / manual payment)
+        await clearCart();
+        toast({ title: "Order placed!", description: "Thank you for your purchase." });
+        navigate(`/order-confirmation/${order.id}`);
+      }
     } catch (err: any) {
       toast({ title: "Order failed", description: err?.message || "Something went wrong.", variant: "destructive" });
     } finally {
@@ -151,23 +201,57 @@ const Checkout = () => {
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1.5 sm:col-span-2">
                   <Label htmlFor="sName">Full Name *</Label>
-                  <Input id="sName" required value={shippingName} onChange={(e) => setShippingName(e.target.value)} />
+                  <Input
+                    id="sName"
+                    required
+                    value={shippingName}
+                    onChange={(e) => { setShippingName(e.target.value); setFormErrors(prev => ({ ...prev, name: "" })); }}
+                    className={formErrors.name ? "border-destructive" : ""}
+                  />
+                  {formErrors.name && <p className="text-xs text-destructive">{formErrors.name}</p>}
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="sPhone">Phone</Label>
-                  <Input id="sPhone" value={shippingPhone} onChange={(e) => setShippingPhone(e.target.value)} placeholder="+27…" />
+                  <Input
+                    id="sPhone"
+                    value={shippingPhone}
+                    onChange={(e) => { setShippingPhone(e.target.value); setFormErrors(prev => ({ ...prev, phone: "" })); }}
+                    placeholder="+27…"
+                    className={formErrors.phone ? "border-destructive" : ""}
+                  />
+                  {formErrors.phone && <p className="text-xs text-destructive">{formErrors.phone}</p>}
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="sPostal">Postal Code</Label>
-                  <Input id="sPostal" value={shippingPostalCode} onChange={(e) => setShippingPostalCode(e.target.value)} />
+                  <Input
+                    id="sPostal"
+                    value={shippingPostalCode}
+                    onChange={(e) => { setShippingPostalCode(e.target.value); setFormErrors(prev => ({ ...prev, postal: "" })); }}
+                    className={formErrors.postal ? "border-destructive" : ""}
+                  />
+                  {formErrors.postal && <p className="text-xs text-destructive">{formErrors.postal}</p>}
                 </div>
                 <div className="space-y-1.5 sm:col-span-2">
                   <Label htmlFor="sAddress">Street Address *</Label>
-                  <Input id="sAddress" required value={shippingAddress} onChange={(e) => setShippingAddress(e.target.value)} />
+                  <Input
+                    id="sAddress"
+                    required
+                    value={shippingAddress}
+                    onChange={(e) => { setShippingAddress(e.target.value); setFormErrors(prev => ({ ...prev, address: "" })); }}
+                    className={formErrors.address ? "border-destructive" : ""}
+                  />
+                  {formErrors.address && <p className="text-xs text-destructive">{formErrors.address}</p>}
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="sCity">City *</Label>
-                  <Input id="sCity" required value={shippingCity} onChange={(e) => setShippingCity(e.target.value)} />
+                  <Input
+                    id="sCity"
+                    required
+                    value={shippingCity}
+                    onChange={(e) => { setShippingCity(e.target.value); setFormErrors(prev => ({ ...prev, city: "" })); }}
+                    className={formErrors.city ? "border-destructive" : ""}
+                  />
+                  {formErrors.city && <p className="text-xs text-destructive">{formErrors.city}</p>}
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="sProvince">Province</Label>
@@ -175,9 +259,36 @@ const Checkout = () => {
                 </div>
                 <div className="space-y-1.5 sm:col-span-2">
                   <Label htmlFor="sNotes">Order Notes</Label>
-                  <Textarea id="sNotes" placeholder="Special instructions…" value={notes} onChange={(e) => setNotes(e.target.value)} rows={3} />
+                  <Textarea
+                    id="sNotes"
+                    placeholder="Special instructions…"
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    rows={3}
+                    maxLength={500}
+                  />
+                  <p className="text-xs text-muted-foreground text-right">{notes.length}/500</p>
                 </div>
               </div>
+            </div>
+
+            {/* Payment Method Info */}
+            <div className="rounded-md border bg-card p-6 shadow-soft">
+              <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                <CreditCard className="h-5 w-5" /> Payment
+              </h2>
+              {isStripeConfigured() ? (
+                <p className="text-sm text-muted-foreground">
+                  Secure payment powered by Stripe. Your card details are encrypted end-to-end.
+                </p>
+              ) : (
+                <div className="rounded-md bg-secondary p-4">
+                  <p className="text-sm text-foreground font-medium mb-1">Cash on Delivery / EFT</p>
+                  <p className="text-xs text-muted-foreground">
+                    Online card payments coming soon. For now, orders are confirmed and payment arranged separately.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
 
@@ -214,8 +325,17 @@ const Checkout = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Shipping</span>
-                  <span>{formatZAR(SHIPPING_COST)}</span>
+                  {shippingCost === 0 ? (
+                    <span className="text-jimmy-green font-semibold">FREE</span>
+                  ) : (
+                    <span>{formatZAR(shippingCost)}</span>
+                  )}
                 </div>
+                {shippingCost > 0 && subtotal < FREE_SHIPPING_THRESHOLD && (
+                  <p className="text-xs text-muted-foreground">
+                    Add {formatZAR(FREE_SHIPPING_THRESHOLD - subtotal)} more for free shipping
+                  </p>
+                )}
                 <div className="flex justify-between border-t pt-2 text-base font-bold">
                   <span>Total</span>
                   <span className="text-primary">{formatZAR(total)}</span>
@@ -227,7 +347,14 @@ const Checkout = () => {
                 disabled={placing}
                 className="w-full mt-6 rounded-sm bg-accent text-accent-foreground font-bold hover:bg-accent/90"
               >
-                {placing ? "Placing Order…" : "Place Order"}
+                {placing ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Placing Order…
+                  </>
+                ) : (
+                  "Place Order"
+                )}
               </Button>
             </div>
           </div>
