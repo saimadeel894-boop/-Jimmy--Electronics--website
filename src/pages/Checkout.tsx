@@ -364,7 +364,7 @@ const Checkout = React.forwardRef<HTMLDivElement>((_, ref) => {
       </section>
     </MainLayout>
   );
-};
+});
 
 Checkout.displayName = "Checkout";
 
