@@ -87,7 +87,7 @@ const CartDrawer = () => {
                         </button>
                       </div>
                       <span className="text-sm font-bold text-primary">
-                        {formatZAR((item.product?.price ?? 0) * item.quantity)}
+                        {formatZAR((item.product?.sale_price ?? item.product?.price ?? 0) * item.quantity)}
                       </span>
                     </div>
                   </div>

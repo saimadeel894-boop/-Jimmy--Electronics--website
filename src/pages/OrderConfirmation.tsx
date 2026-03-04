@@ -4,12 +4,13 @@ import MainLayout from "@/components/layout/MainLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Package } from "lucide-react";
+import { CheckCircle, Clock, AlertCircle, Package } from "lucide-react";
 import { formatZAR } from "@/lib/format";
 
 type OrderDetail = {
   id: string;
   status: string;
+  payment_status: string;
   shipping_name: string;
   shipping_city: string;
   subtotal: number;
@@ -26,6 +27,12 @@ type OrderItem = {
   quantity: number;
 };
 
+const paymentStatusConfig: Record<string, { icon: React.ElementType; color: string; label: string }> = {
+  paid: { icon: CheckCircle, color: "text-jimmy-green", label: "Payment Confirmed" },
+  pending: { icon: Clock, color: "text-accent", label: "Payment Pending" },
+  failed: { icon: AlertCircle, color: "text-destructive", label: "Payment Failed" },
+};
+
 const OrderConfirmation = () => {
   const { orderId } = useParams();
   const [order, setOrder] = useState<OrderDetail | null>(null);
@@ -34,7 +41,7 @@ const OrderConfirmation = () => {
 
   useEffect(() => {
     if (!orderId) return;
-    const fetch = async () => {
+    const fetchOrder = async () => {
       const [orderRes, itemsRes] = await Promise.all([
         supabase.from("orders").select("*").eq("id", orderId).maybeSingle(),
         supabase.from("order_items").select("*").eq("order_id", orderId),
@@ -43,7 +50,7 @@ const OrderConfirmation = () => {
       setOrderItems((itemsRes.data as OrderItem[]) || []);
       setLoading(false);
     };
-    fetch();
+    fetchOrder();
   }, [orderId]);
 
   if (loading) {
@@ -61,7 +68,9 @@ const OrderConfirmation = () => {
     return (
       <MainLayout>
         <section className="container-jimmy py-12 text-center">
-          <h1 className="text-2xl font-bold mb-4">Order not found</h1>
+          <AlertCircle className="mx-auto h-12 w-12 text-muted-foreground/40 mb-4" />
+          <h1 className="text-2xl font-bold mb-2">Order not found</h1>
+          <p className="text-muted-foreground mb-6">We couldn't find this order. Please check the link or contact support.</p>
           <Button asChild variant="outline" className="rounded-sm">
             <Link to="/shop">Back to Shop</Link>
           </Button>
@@ -70,13 +79,21 @@ const OrderConfirmation = () => {
     );
   }
 
+  const paymentInfo = paymentStatusConfig[order.payment_status] || paymentStatusConfig.pending;
+  const StatusIcon = paymentInfo.icon;
+
   return (
     <MainLayout>
       <section className="container-jimmy py-12 max-w-2xl mx-auto text-center">
-        <CheckCircle className="mx-auto h-16 w-16 text-jimmy-green mb-4" />
-        <h1 className="text-3xl font-bold text-foreground mb-2">Order Confirmed!</h1>
-        <p className="text-muted-foreground mb-8">
+        <StatusIcon className={`mx-auto h-16 w-16 ${paymentInfo.color} mb-4`} />
+        <h1 className="text-3xl font-bold text-foreground mb-2">
+          {order.payment_status === "paid" ? "Order Confirmed!" : "Order Placed!"}
+        </h1>
+        <p className="text-muted-foreground mb-2">
           Thank you, {order.shipping_name}. Your order has been placed.
+        </p>
+        <p className={`text-sm font-semibold ${paymentInfo.color} mb-8`}>
+          {paymentInfo.label}
         </p>
 
         <div className="rounded-md border bg-card p-6 shadow-soft text-left mb-6">
@@ -103,9 +120,18 @@ const OrderConfirmation = () => {
           </div>
 
           <div className="border-t pt-3 space-y-1 text-sm">
-            <div className="flex justify-between"><span className="text-muted-foreground">Subtotal</span><span>{formatZAR(Number(order.subtotal))}</span></div>
-            <div className="flex justify-between"><span className="text-muted-foreground">Shipping</span><span>{formatZAR(Number(order.shipping_cost))}</span></div>
-            <div className="flex justify-between border-t pt-2 text-base font-bold"><span>Total</span><span className="text-primary">{formatZAR(Number(order.total))}</span></div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Subtotal</span>
+              <span>{formatZAR(Number(order.subtotal))}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Shipping</span>
+              <span>{Number(order.shipping_cost) === 0 ? <span className="text-jimmy-green font-semibold">FREE</span> : formatZAR(Number(order.shipping_cost))}</span>
+            </div>
+            <div className="flex justify-between border-t pt-2 text-base font-bold">
+              <span>Total</span>
+              <span className="text-primary">{formatZAR(Number(order.total))}</span>
+            </div>
           </div>
         </div>
 
