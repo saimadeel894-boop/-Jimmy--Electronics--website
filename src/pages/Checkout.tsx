@@ -18,9 +18,7 @@ import { isStripeConfigured } from "@/lib/stripe-config";
 const SHIPPING_COST = 150;
 const FREE_SHIPPING_THRESHOLD = 2500;
 
-import React from "react";
-
-const Checkout = React.forwardRef<HTMLDivElement>((_, ref) => {
+const Checkout = () => {
   const { user, profile, loading: authLoading } = useAuth();
   const { items, subtotal, clearCart, loading: cartLoading } = useCart();
   const navigate = useNavigate();
