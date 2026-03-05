@@ -11,6 +11,7 @@ const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const { data: product, isLoading } = useProductBySlug(slug);
   const { data: productReviews = [] } = useReviewsByProduct(product?.id);
+  const { addItem } = useCart();
 
   if (isLoading) {
     return (
@@ -36,7 +37,6 @@ const ProductDetail = () => {
     );
   }
 
-  const { addItem } = useCart();
 
   const handleAddToCart = () => {
     addItem(product.id);
