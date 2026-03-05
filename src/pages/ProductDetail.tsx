@@ -37,7 +37,6 @@ const ProductDetail = () => {
     );
   }
 
-  const { addItem } = useCart();
 
   const handleAddToCart = () => {
     addItem(product.id);
