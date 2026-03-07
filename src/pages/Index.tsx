@@ -67,7 +67,7 @@ const Index = () => {
               >
                 <source src="/videos/jimmy-action.mp4" type="video/mp4" />
               </video>
-              <div className="absolute inset-0 bg-black/20" />
+              <div className="absolute inset-0 bg-black/50 md:bg-black/20" />
               <div className="relative z-10 p-6 pb-10 text-primary-foreground md:p-10 md:pb-14">
                 <p className="mb-1 text-sm font-medium tracking-wide text-primary-foreground/90">JIMMY PW11 PRO MAX</p>
                 <h1 className="mb-1 text-3xl font-extrabold md:text-[42px] md:leading-tight">From {formatZAR(12890)}</h1>
