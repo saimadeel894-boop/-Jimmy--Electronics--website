@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { formatZAR } from "@/lib/format";
 import { useProducts, useCategories } from "@/hooks/use-products";
 import { ProductGridSkeleton } from "@/components/ProductCardSkeleton";
+import ProductImage from "@/components/ProductImage";
 
 type SortOption = "default" | "price-asc" | "price-desc" | "name";
 
