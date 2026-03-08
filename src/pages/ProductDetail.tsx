@@ -6,7 +6,16 @@ import { formatZAR } from "@/lib/format";
 import { useProductBySlug, useReviewsByProduct } from "@/hooks/use-products";
 import { useCart } from "@/contexts/CartContext";
 import { ProductDetailSkeleton } from "@/components/ProductCardSkeleton";
-import ProductImage from "@/components/ProductImage";
+import ProductImageGallery from "@/components/ProductImageGallery";
+import { useMemo } from "react";
+
+// Extra local images to supplement the single DB image per product
+const supplementaryImages: Record<string, string[]> = {
+  "jimmy-bx7-pro": ["/images/products/jimmy-bx7-pro-cat.png"],
+  "jimmy-jv83-pro": ["/images/products/jimmy-jv83-pro.jpg"],
+  "jimmy-r9-water-purifier": ["/images/products/jimmy-water-purifier-cat.png"],
+  "jimmy-f8-hair-dryer": ["/images/products/jimmy-f8-hair-styler.png"],
+};
 
 const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
