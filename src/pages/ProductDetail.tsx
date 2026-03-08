@@ -6,6 +6,7 @@ import { formatZAR } from "@/lib/format";
 import { useProductBySlug, useReviewsByProduct } from "@/hooks/use-products";
 import { useCart } from "@/contexts/CartContext";
 import { ProductDetailSkeleton } from "@/components/ProductCardSkeleton";
+import ProductImage from "@/components/ProductImage";
 
 const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
