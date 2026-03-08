@@ -23,6 +23,12 @@ const ProductDetail = () => {
   const { data: productReviews = [] } = useReviewsByProduct(product?.id);
   const { addItem } = useCart();
 
+  const allImages = useMemo(() => {
+    if (!product) return [];
+    const extras = supplementaryImages[product.slug] || [];
+    return [...product.images, ...extras];
+  }, [product]);
+
   if (isLoading) {
     return (
       <MainLayout>
@@ -47,15 +53,9 @@ const ProductDetail = () => {
     );
   }
 
-
   const handleAddToCart = () => {
     addItem(product.id);
   };
-
-  const allImages = useMemo(() => {
-    const extras = supplementaryImages[product.slug] || [];
-    return [...product.images, ...extras];
-  }, [product]);
 
   return (
     <MainLayout>
