@@ -52,6 +52,11 @@ const ProductDetail = () => {
     addItem(product.id);
   };
 
+  const allImages = useMemo(() => {
+    const extras = supplementaryImages[product.slug] || [];
+    return [...product.images, ...extras];
+  }, [product]);
+
   return (
     <MainLayout>
       {/* Breadcrumb */}
