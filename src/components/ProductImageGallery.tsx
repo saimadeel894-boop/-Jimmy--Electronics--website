@@ -38,10 +38,11 @@ const ProductImageGallery = ({ images, name }: ProductImageGalleryProps) => {
     setSelectedIndex(emblaApi.selectedScrollSnap());
   }, [emblaApi]);
 
-  // Attach listener
-  useState(() => {
-    if (emblaApi) emblaApi.on("select", onSelect);
-  });
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on("select", onSelect);
+    return () => { emblaApi.off("select", onSelect); };
+  }, [emblaApi, onSelect]);
 
   // Single image — no carousel needed
   if (images.length <= 1) {
