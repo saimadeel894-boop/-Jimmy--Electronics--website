@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { formatZAR } from "@/lib/format";
 import { useProducts, Product } from "@/hooks/use-products";
 import { ProductGridSkeleton } from "@/components/ProductCardSkeleton";
+import ProductImage from "@/components/ProductImage";
 
 const bestSellerSlugs = ["jimmy-water-tank-mopping-kit", "jimmy-h8-flex", "jimmy-af3-air-fryer", "jimmy-pw11-pro-max"];
 
