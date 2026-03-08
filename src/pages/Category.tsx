@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { formatZAR } from "@/lib/format";
 import { useProductsByCategory } from "@/hooks/use-products";
 import { ProductGridSkeleton } from "@/components/ProductCardSkeleton";
+import ProductImage from "@/components/ProductImage";
 
 const categoryNames: Record<string, string> = {
   "stick-vacuum": "Stick Vacuum Cleaners",
