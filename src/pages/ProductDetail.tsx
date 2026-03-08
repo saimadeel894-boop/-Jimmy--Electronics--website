@@ -12,9 +12,14 @@ import { useMemo } from "react";
 // Extra local images to supplement the single DB image per product
 const supplementaryImages: Record<string, string[]> = {
   "jimmy-bx7-pro": ["/images/products/jimmy-bx7-pro-cat.png"],
+  "jimmy-bx7-pro-max": ["/images/products/jimmy-bx7-pro-max-2.jpg", "/images/products/jimmy-bx7-pro-max-3.jpg", "/images/products/jimmy-bx7-pro-max-4.jpg"],
+  "jimmy-jv9-pro-aqua": ["/images/products/jimmy-jv9-pro-aqua-2.jpg", "/images/products/jimmy-jv9-pro-aqua-3.jpg", "/images/products/jimmy-jv9-pro-aqua-4.jpg"],
   "jimmy-jv83-pro": ["/images/products/jimmy-jv83-pro.jpg"],
   "jimmy-r9-water-purifier": ["/images/products/jimmy-water-purifier-cat.png"],
   "jimmy-f8-hair-dryer": ["/images/products/jimmy-f8-hair-styler.png"],
+  "jimmy-hf9-hair-multi-styler": ["/images/products/jimmy-f8-hair-styler.png"],
+  "jimmy-h8-flex": ["/images/products/jimmy-jv83-pro.jpg"],
+  "jimmy-pw11-pro-max": ["/images/products/jimmy-jv9-pro-aqua-3.jpg"],
 };
 
 const ProductDetail = () => {
