@@ -6,13 +6,28 @@ import { formatZAR } from "@/lib/format";
 import { useProductBySlug, useReviewsByProduct } from "@/hooks/use-products";
 import { useCart } from "@/contexts/CartContext";
 import { ProductDetailSkeleton } from "@/components/ProductCardSkeleton";
-import ProductImage from "@/components/ProductImage";
+import ProductImageGallery from "@/components/ProductImageGallery";
+import { useMemo } from "react";
+
+// Extra local images to supplement the single DB image per product
+const supplementaryImages: Record<string, string[]> = {
+  "jimmy-bx7-pro": ["/images/products/jimmy-bx7-pro-cat.png"],
+  "jimmy-jv83-pro": ["/images/products/jimmy-jv83-pro.jpg"],
+  "jimmy-r9-water-purifier": ["/images/products/jimmy-water-purifier-cat.png"],
+  "jimmy-f8-hair-dryer": ["/images/products/jimmy-f8-hair-styler.png"],
+};
 
 const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const { data: product, isLoading } = useProductBySlug(slug);
   const { data: productReviews = [] } = useReviewsByProduct(product?.id);
   const { addItem } = useCart();
+
+  const allImages = useMemo(() => {
+    if (!product) return [];
+    const extras = supplementaryImages[product.slug] || [];
+    return [...product.images, ...extras];
+  }, [product]);
 
   if (isLoading) {
     return (
@@ -38,7 +53,6 @@ const ProductDetail = () => {
     );
   }
 
-
   const handleAddToCart = () => {
     addItem(product.id);
   };
@@ -59,15 +73,8 @@ const ProductDetail = () => {
       <section className="section-padding-md">
         <div className="container-jimmy">
           <div className="grid gap-8 md:grid-cols-2">
-            {/* Product Image */}
-            <div className="aspect-square overflow-hidden rounded-md bg-secondary">
-              <ProductImage
-                src={product.images[0]}
-                alt={product.name}
-                className="h-full w-full object-contain p-4"
-                loading="eager"
-              />
-            </div>
+            {/* Product Image Gallery */}
+            <ProductImageGallery images={allImages} name={product.name} />
 
             {/* Product Info */}
             <div className="flex flex-col">
