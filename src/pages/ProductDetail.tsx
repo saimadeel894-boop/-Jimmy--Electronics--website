@@ -73,15 +73,8 @@ const ProductDetail = () => {
       <section className="section-padding-md">
         <div className="container-jimmy">
           <div className="grid gap-8 md:grid-cols-2">
-            {/* Product Image */}
-            <div className="aspect-square overflow-hidden rounded-md bg-secondary">
-              <ProductImage
-                src={product.images[0]}
-                alt={product.name}
-                className="h-full w-full object-contain p-4"
-                loading="eager"
-              />
-            </div>
+            {/* Product Image Gallery */}
+            <ProductImageGallery images={allImages} name={product.name} />
 
             {/* Product Info */}
             <div className="flex flex-col">
