@@ -61,10 +61,11 @@ const ProductDetail = () => {
           <div className="grid gap-8 md:grid-cols-2">
             {/* Product Image */}
             <div className="aspect-square overflow-hidden rounded-md bg-secondary">
-              <img
+              <ProductImage
                 src={product.images[0]}
                 alt={product.name}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain p-4"
+                loading="eager"
               />
             </div>
 

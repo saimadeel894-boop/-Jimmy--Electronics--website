@@ -189,7 +189,7 @@ const Index = () => {
                         <span className="rounded-sm bg-accent px-2 py-0.5 text-[10px] font-bold text-accent-foreground">Save {product.savePct}%</span>
                       )}
                     </div>
-                    <img src={product.images[0]} alt={product.name} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
+                    <ProductImage src={product.images[0]} alt={product.name} className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105" />
                   </div>
                   <div className="p-4">
                     <div className="flex items-baseline gap-2 flex-wrap mb-2">
